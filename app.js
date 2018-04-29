@@ -37,9 +37,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // define a simple route
-app.get('/', (req, res) => {
-    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
-});
+// app.get('/', (req, res) => {
+//     res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
+// });
 
 // listen for requests
 app.listen(PORT, () => {
@@ -49,4 +49,5 @@ app.listen(PORT, () => {
 });
 
 // Require Hellos routes
-require('./app/routes/hello.routes.js')(app);
+// require('./app/routes/hello.routes.js')(app);
+require('./app/routes/resource.routes.js')(app);
