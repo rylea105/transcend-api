@@ -51,3 +51,4 @@ app.listen(PORT, () => {
 // Require Hellos routes
 // require('./app/routes/hello.routes.js')(app);
 require('./app/routes/resource.routes.js')(app);
+require('./app/routes/software.routes.js')(app);
