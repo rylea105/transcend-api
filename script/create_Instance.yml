@@ -1,0 +1,28 @@
+---
+- name: Create Instance
+  hosts: localhost
+  gather_facts: False
+  vars:
+    key_name: Senior
+    instance_type: t2.micro
+    security_group: HTTP
+    image: ami-d2fa88ae
+    region: ap-southeast-1
+  tasks:
+    - name: Create Instance
+      ec2:
+        region: "{{region}}"
+        key_name: "{{key_name}}"
+        instance_type: "{{instance_type}}"
+        image: "{{image}}"
+        wait: yes
+        group: "{{security_group}}"
+        count: 1
+        vpc_subnet_id: subnet-de1060b9
+        assign_public_ip: yes
+        volumes:
+         - device_name: /dev/sda1
+           volume_type: gp2
+           volume_size: 8
+           delete_on_termination: yes
+      register: ec2_out

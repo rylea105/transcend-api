@@ -14,4 +14,4 @@
            volume_type: gp2
            volume_size: 8
            delete_on_termination: yes
-      register: ec2
+      register: ec2_out
