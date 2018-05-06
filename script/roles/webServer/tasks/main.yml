@@ -1,4 +1,3 @@
-tasks:
   - name: Install epel-release
     yum:
         name: epel-release
@@ -15,7 +14,6 @@ tasks:
        name: git
        state: latest
 
-handlers:
   - name: Start Nginx
     service:
             name=nginx
