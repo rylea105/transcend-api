@@ -1,5 +1,23 @@
-- name: Transfer Script To Remote Host
-  copy: src=../script/nginx.sh dest=/home/centos
+tasks:
+  - name: Install epel-release
+     yum:
+        name: epel-release
+        state: present
 
-- name: Start installation script
-  command: sh ~/nginx.sh
+   - name: Install Nginx
+     yum:
+        name: nginx
+        state: latest
+     notify: Start Nginx
+
+   - name: Install Git
+     yum:
+       name: git
+       state: latest
+
+handlers:
+   - name: Start Nginx
+     service:
+            name=nginx
+            state=started
+            enabled=True
