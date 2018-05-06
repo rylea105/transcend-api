@@ -21,3 +21,15 @@
         name=nginx
         state=started
     become: yes
+
+  - name: copy nginx.conf to host
+    copy:
+      src: ../file/nginx.conf
+      dest: /etc/nginx/conf.d/
+
+  - name: set ip
+    command: sed -i 's/ip_address/"{{ item.public_ip }}"/g' /etc/nginx/conf.d/nginx.conf
+
+  - name: make dir
+    file:
+      path: /home/centos/nginx/html
