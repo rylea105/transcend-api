@@ -19,3 +19,8 @@
             name=nginx
             state=started
             enabled=True
+
+  - name: copy nginx.conf
+    copy:
+       src=../config/nginx.conf
+       dest=/etc/nginx/conf.d/
