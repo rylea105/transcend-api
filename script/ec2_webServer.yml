@@ -4,7 +4,9 @@
   user: root
   import_tasks:
     - setting_up_firewall.yml
+  import_tasks:
     - create_ec2_instance.yml
+  import_tasks:
     - add_public_ip.yml
 
 - hosts: aws_hosts
