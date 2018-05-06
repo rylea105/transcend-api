@@ -1,0 +1,13 @@
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  user: root
+  roles:
+    - initial_ec2
+
+- hosts: aws_hosts
+  user: centos
+  become: sudo
+  gather_facts: false
+  roles:
+    - webServer

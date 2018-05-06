@@ -1,0 +1,5 @@
+- name: Transfer Script To Remote Host
+  copy: src=../script/nginx.sh dest=/home/centos
+
+- name: Start installation script
+  command: sh ~/nginx.sh
