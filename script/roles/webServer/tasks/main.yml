@@ -4,19 +4,19 @@ tasks:
         name: epel-release
         state: present
 
-   - name: Install Nginx
+  - name: Install Nginx
      yum:
         name: nginx
         state: latest
      notify: Start Nginx
 
-   - name: Install Git
+  - name: Install Git
      yum:
        name: git
        state: latest
 
 handlers:
-   - name: Start Nginx
+  - name: Start Nginx
      service:
             name=nginx
             state=started
