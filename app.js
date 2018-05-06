@@ -53,4 +53,4 @@ app.listen(PORT, () => {
 require('./app/routes/resource.routes.js')(app);
 require('./app/routes/software.routes.js')(app);
 require('./app/routes/instanceInfo.routes.js')(app);
-Require('./app/routes/createInstance.routes.js')(app);
+require('./app/routes/createInstance.routes.js')(app);
