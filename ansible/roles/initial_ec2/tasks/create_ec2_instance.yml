@@ -1,7 +1,7 @@
     - name: Create Instance
       ec2:
         region: ap-southeast-1
-        key_name: Senior
+        key_name: webServer
         instance_type: t2.micro
         image: ami-d2fa88ae
         wait: yes
@@ -9,6 +9,9 @@
         count: 1
         vpc_subnet_id: subnet-de1060b9
         assign_public_ip: yes
+        instance_tags:
+           name: webserver
+           owner: ansible
         volumes:
          - device_name: /dev/sda1
            volume_type: gp2

@@ -1,0 +1,13 @@
+- name: Setting up Security/Firewall Group
+  import_tasks: setting_up_firewall.yml
+
+- name: Provision an EC2 Instances
+  import_tasks: create_ec2_instance.yml
+
+- name: Add all instance public IPs to host group
+  add_host: hostname={{ item.public_ip }} groups=aws_hosts
+  with_items: "{{ ec2_out.instances }}"
+
+- name: Wait for ssh to come
+  wait_for: host={{ item.public_dns_name }} port=22 delay=60 timeout=320 state=started 
+  with_items: "{{ ec2_out.instances }}"

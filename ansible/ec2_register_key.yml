@@ -1,0 +1,9 @@
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Uploading public key
+      ec2_key:
+        name: webServer
+        region: ap-southeast-1
+        key_material: "{{ lookup('file', '~/ec2-keys/webServer_rsa.pub') }}"
+        state: present
