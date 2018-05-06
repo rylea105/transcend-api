@@ -1,6 +1,6 @@
 tasks:
   - name: Install epel-release
-     yum:
+    yum:
         name: epel-release
         state: present
 
