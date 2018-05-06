@@ -1,13 +1,13 @@
     - name: Create Instance
       ec2:
-        region: "{{ region }}"
+        region: ap-southeast-1
         key_name: webServer
-        instance_type: "{{ instance_type }}"
-        image: "{{ image }}"
+        instance_type: t2.micro
+        image: ami-d2fa88ae
         wait: yes
         group: webServer
         count: 1
-        vpc_subnet_id: "{{ vpc }}"
+        vpc_subnet_id: subnet-de1060b9
         assign_public_ip: yes
         instance_tags:
            name: webserver
