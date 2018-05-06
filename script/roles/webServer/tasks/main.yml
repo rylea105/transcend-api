@@ -5,19 +5,19 @@ tasks:
         state: present
 
   - name: Install Nginx
-     yum:
+    yum:
         name: nginx
         state: latest
      notify: Start Nginx
 
   - name: Install Git
-     yum:
+    yum:
        name: git
        state: latest
 
 handlers:
   - name: Start Nginx
-     service:
+    service:
             name=nginx
             state=started
             enabled=True
