@@ -8,7 +8,7 @@ tasks:
     yum:
         name: nginx
         state: latest
-     notify: Start Nginx
+    notify: Start Nginx
 
   - name: Install Git
     yum:
