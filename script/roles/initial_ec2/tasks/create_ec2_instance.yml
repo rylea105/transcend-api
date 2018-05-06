@@ -3,16 +3,16 @@
     instance_type: t2.micro
     security_group: webServer
     image: ami-d2fa88ae
-    region: ap-southeast-1
-  tasks:
+    region:
+
     - name: Create Instance
       ec2:
-        region: "{{region}}"
-        key_name: "{{key_name}}"
-        instance_type: "{{instance_type}}"
-        image: "{{image}}"
+        region: ap-southeast-1
+        key_name: Senior
+        instance_type: t2.micro
+        image: ami-d2fa88ae
         wait: yes
-        group: "{{security_group}}"
+        group: webServer
         count: 1
         vpc_subnet_id: subnet-de1060b9
         assign_public_ip: yes
