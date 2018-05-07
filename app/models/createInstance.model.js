@@ -1,4 +1,4 @@
-function createInstance(access_key,secret_key){
+function createInstance(){
   const exec = require('child_process').exec;
   const child = exec(‘sh ../../ansible/run_script.sh } ’,
       (error, stdout, stderr) => {
