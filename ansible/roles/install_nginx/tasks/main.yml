@@ -26,10 +26,13 @@
     copy:
       src: ../file/nginx.conf
       dest: /etc/nginx/conf.d/
+    become: yes
 
   - name: set ip
     command: sed -i 's/ip_address/"{{ item.public_ip }}"/g' /etc/nginx/conf.d/nginx.conf
+    become: yes
 
   - name: make dir
     file:
       path: /home/centos/nginx/html
+    become: yes
