@@ -1,7 +1,7 @@
 #!/bin/bash
 
-access=$1
-secret=$2
+access="AKIAIQ77WOYRRIFE6KFQ"
+secret="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"
 
 export AWS_ACCESS_KEY_ID="$access"
 export AWS_SECRET_ACCESS_KEY="$secret"
