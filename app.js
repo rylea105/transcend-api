@@ -36,10 +36,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
 
-// define a simple route
-// app.get('/', (req, res) => {
-//     res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
-// });
+
+app.get('/create', (req, res) => {
+  res.json({"message": "Creating EC2 Instance"});
+  const createInstance = require('./app/models/createInstance.model.js');
+
+});
 
 // listen for requests
 app.listen(PORT, () => {
@@ -53,4 +55,4 @@ app.listen(PORT, () => {
 require('./app/routes/resource.routes.js')(app);
 require('./app/routes/software.routes.js')(app);
 require('./app/routes/instanceInfo.routes.js')(app);
-require('./app/routes/createInstance.routes.js')(app);
+//require('./app/routes/createInstance.routes.js')(app);
