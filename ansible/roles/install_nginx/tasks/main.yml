@@ -33,7 +33,6 @@
       replace: "{{ ipify_public_ip }}"
     become: yes
 
-
   - name: make dir
     file:
       path: /home/centos/nginx/html
@@ -47,5 +46,13 @@
     become: yes
 
   - name: Start Nginx
-    command: systemctl start nginx | systemctl enable nginx | setsebool -P httpd_can_network_connect 1
+    shell: systemctl start nginx
+    become: yes
+
+  - name: Enable Nginx
+    shell: systemctl enable nginx
+    become: yes
+
+  - name: Set Connect network
+    shell: setsebool -P httpd_can_network_connect 1
     become: yes
