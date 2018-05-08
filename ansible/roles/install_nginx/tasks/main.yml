@@ -39,4 +39,5 @@
   - name: make dir
     file:
       path: /home/centos/nginx/html
+      state: directory
     become: yes
