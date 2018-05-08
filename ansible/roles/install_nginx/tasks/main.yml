@@ -29,8 +29,8 @@
     become: yes
 
   - name: get IP
-      ipify_facts:
-      become: yes
+    ipify_facts:
+    become: yes
 
   - name: set IP Address
     replace:
