@@ -45,3 +45,9 @@
       path: /home/centos/nginx/html
       state: directory
     become: yes
+
+  - name: copy nginx.conf to host
+    copy:
+      src: ../file/index.html
+      dest: /home/centos/nginx/html
+    become: yes
