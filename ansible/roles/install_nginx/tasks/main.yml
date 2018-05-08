@@ -16,12 +16,6 @@
         state: latest
     become: yes
 
-  - name: Start Nginx
-    service:
-        name=nginx
-        state=started
-    become: yes
-
   - name: copy nginx.conf to host
     copy:
       src: ../file/nginx.conf
@@ -46,8 +40,12 @@
       state: directory
     become: yes
 
-  - name: copy nginx.conf to host
+  - name: copy index.html to html directory
     copy:
       src: ../file/index.html
       dest: /home/centos/nginx/html
+    become: yes
+
+  - name: Start Nginx
+    command: systemctl start nginx | systemctl enable nginx | setsebool -P httpd_can_network_connect 1
     become: yes
