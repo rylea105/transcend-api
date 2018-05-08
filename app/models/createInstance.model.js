@@ -6,6 +6,6 @@
           return `stdout: ${stdout}` + `stderr: ${stderr}`;
           if (error !== null) {
               console.log(`exec error: ${error}`);
-              return
+              return `exec error: ${error}`;
           }
   });

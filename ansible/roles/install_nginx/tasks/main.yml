@@ -28,12 +28,16 @@
       dest: /etc/nginx/conf.d/
     become: yes
 
-  - name: set
-    replace:
-       path: /etc/nginx/conf.d/nginx.conf
-       regexp: 'ip_address'
-       replace: aws_hosts
-    become: yes
+     - name: get IP
+       ipify_facts:
+       become: yes
+
+     - name: set IP Address
+       replace:
+           path: /etc/nginx/conf.d/nginx.conf
+           regexp: 'ip_address'
+           replace: "{{ ipify_public_ip }}"
+       become: yes
 
 
   - name: make dir
