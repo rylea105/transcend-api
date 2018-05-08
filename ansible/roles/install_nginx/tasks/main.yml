@@ -28,9 +28,13 @@
       dest: /etc/nginx/conf.d/
     become: yes
 
-  - name: set ip
-    command: sed -i 's/ip_address/"{{ item.public_ip }}"/g' /etc/nginx/conf.d/nginx.conf
+  - name: set
+    replace:
+       path: /etc/nginx/conf.d/nginx.conf
+       regexp: 'ip_address'
+       replace: aws_hosts
     become: yes
+
 
   - name: make dir
     file:

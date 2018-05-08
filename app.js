@@ -40,6 +40,7 @@ app.use(bodyParser.json())
 app.get('/create', (req, res) => {
   res.json({"message": "Creating EC2 Instance"});
   const createInstance = require('./app/models/createInstance.model.js');
+  res.json({"message": "Done!!!"});
 
 });
 
