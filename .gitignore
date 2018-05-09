@@ -1,4 +1,4 @@
 node_modules
 .env
-.swp
-.retry
+ansible/roles/install_nginx/tasks/*.swp
+ansible/*.retry

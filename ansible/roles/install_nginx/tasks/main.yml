@@ -35,14 +35,14 @@
 
   - name: make dir
     file:
-      path: /home/centos/nginx/html
+      path: /var/www/nginx/html
       state: directory
     become: yes
 
   - name: copy index.html to html directory
     copy:
       src: ../file/index.html
-      dest: /home/centos/nginx/html
+      dest: /var/www/nginx/html
     become: yes
 
   - name: Start Nginx
