@@ -1,11 +1,14 @@
-  const exec = require('child_process').exec;
-  const child = exec(`sh ~/transcend-api/ansible/run_script.sh } `,
-      (error, stdout, stderr) => {
-          console.log(`stdout: ${stdout}`);
-          console.log(`stderr: ${stderr}`);
-          return `stdout: ${stdout}` + `stderr: ${stderr}`;
-          if (error !== null) {
-              console.log(`exec error: ${error}`);
-              return `exec error: ${error}`;
-          }
-  });
+var spawn = require('child_process').spawn,
+    process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh','']);
+
+process.stdout.on('data', function (data) {
+  console.log('stdout: ' + data.toString());
+});
+
+process.stderr.on('data', function (data) {
+  console.log('stderr: ' + data.toString());
+});
+
+process.on('exit', function (code) {
+  console.log('child process exited with code ' + code.toString());
+});
