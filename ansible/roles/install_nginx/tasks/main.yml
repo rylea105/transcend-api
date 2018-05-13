@@ -1,0 +1,58 @@
+  - name: Install epel-release
+    yum:
+       name: epel-release
+       state: latest
+    become: yes
+
+  - name: Install Nginx
+    yum:
+        name: nginx
+        state: latest
+    become: yes
+
+  - name: Install Git
+    yum:
+        name: git
+        state: latest
+    become: yes
+
+  - name: copy nginx.conf to host
+    copy:
+      src: ../file/nginx.conf
+      dest: /etc/nginx/conf.d/
+    become: yes
+
+  - name: get IP
+    ipify_facts:
+    become: yes
+
+  - name: set IP Address
+    replace:
+      path: /etc/nginx/conf.d/nginx.conf
+      regexp: 'ip_address'
+      replace: "{{ ipify_public_ip }}"
+    become: yes
+
+  - name: make dir
+    file:
+      path: /var/www/nginx/html
+      state: directory
+    become: yes
+
+  - name: copy index.html to html directory
+    copy:
+      src: ../file/index.html
+      dest: /var/www/nginx/html
+    become: yes
+
+  - name: Start Nginx
+    shell: systemctl start nginx
+    become: yes
+
+  - name: Enable Nginx
+    shell: systemctl enable nginx
+    become: yes
+
+  - name: Set Connect network
+    shell: setsebool -P httpd_can_network_connect 1
+    become: yes
