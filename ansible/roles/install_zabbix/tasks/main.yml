@@ -1,0 +1,68 @@
+- name: Install mariadb
+  yum:
+    name: mariadb-server
+    state: present
+
+- name: Install the Python MySQL Support Libraries
+  yum: pkg=MySQL-python state=latest
+
+- name: start mysql server and enable it on reboot
+  service: name=mariadb state=started enabled=true
+
+- name: update mysql root password for all root accounts
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "zabbix"
+    login_user: root
+    login_password: "zabbix"
+    check_implicit_admin: yes
+    priv: "*.*:ALL,GRANT"
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: Copy the root credentials as .my.cnf file
+  template: src=root.cnf.j2 dest=~/.my.cnf mode=0600
+
+- name: Create a New Test DB called MyNewDB
+  mysql_db: name=MyNewDB state=present login_user=root login_password=zabbix
+
+- name: install wget
+  yum:
+    name: wget
+    state: present
+
+- name: install openjdk
+  yum:
+    name: java-1.8.0-openjdk
+    state: present
+
+- name: download jenkins.repo
+  get_url:
+    url: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+    dest: /etc/yum.repos.d/jenkins.repo
+
+- name: import jenkins key
+  rpm_key:
+    state: present
+    key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+- name: install jenkins
+  yum:
+    name: jenkins
+    state: present
+
+- name: start jenkins and enable jenkins
+  systemd: name=jenkins state=started enabled=true
+
+- name: init password jenkin
+  shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+  changed_when: false
+  register: result
+
+- name: print init password jenkins
+  debug:
+    var: result.stdout
