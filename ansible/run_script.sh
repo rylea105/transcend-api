@@ -12,7 +12,7 @@ export AWS_SECRET_ACCESS_KEY="$secret"
 
 ansible-playbook /root/transcend-api/ansible/ec2_register_key.yml
 
-ansible-playbook /root/transcend-api/ansible/initial_ec2.yml --private-key=~/ec2-keys/webServer_rsa.pem
+ansible-playbook /root/transcend-api/ansible/initial_fullstack.yml --private-key=~/ec2-keys/webServer_rsa.pem
 
 export AWS_ACCESS_KEY_ID=""
 export AWS_SECRET_ACCESS_KEY=""
