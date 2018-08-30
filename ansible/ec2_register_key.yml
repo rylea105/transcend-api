@@ -1,5 +1,6 @@
 - hosts: localhost
   connection: local
+  var: key
   tasks:
     - name: Uploading public key
       ec2_key:
