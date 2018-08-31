@@ -10,32 +10,42 @@
     - ::1
 
 - name: Reload privilege tables
-  command: 'mysql -ne "{{ item }}"'
+  command: 'mysql p "{{ item }}"'
   with_items:
     - FLUSH PRIVILEGES
+  responses:
+    (?i)Password: 'zabbix'
   changed_when: False
 
 - name: Remove anonymous users
-  command: 'mysql -ne "{{ item }}"'
+  command: 'mysql p "{{ item }}"'
   with_items:
     - DELETE FROM mysql.user WHERE User=''
+  responses:
+    (?i)Password: 'zabbix'    
   changed_when: False
 
 - name: Disallow root login remotely
-  command: 'mysql -ne "{{ item }}"'
+  command: 'mysql p "{{ item }}"'
   with_items:
     - DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')
+  responses:
+    (?i)Password: 'zabbix'
   changed_when: False
 
 - name: Remove test database and access to it
-  command: 'mysql -ne "{{ item }}"'
+  command: 'mysql p "{{ item }}"'
   with_items:
     - DROP DATABASE IF EXISTS test
     - DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%'
+  responses:
+    (?i)Password: 'zabbix'
   changed_when: False
 
 - name: Reload privilege tables
-  command: 'mysql -ne "{{ item }}"'
+  command: 'mysql p "{{ item }}"'
   with_items:
     - FLUSH PRIVILEGES
-changed_when: False
+  responses:
+    (?i)Password: 'zabbix'
+  changed_when: False
