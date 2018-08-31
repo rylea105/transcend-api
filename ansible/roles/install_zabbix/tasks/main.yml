@@ -3,7 +3,7 @@
   include: install_mariadb.yml
 
 - name: Start and enable service
-  service: name=mysql state=started enabled=yes
+  service: name=mariadb state=started enabled=yes
 
 - name: mysql secure installation
   include: mysql_secure_installation.yml
