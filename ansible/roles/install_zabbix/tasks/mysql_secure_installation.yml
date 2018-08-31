@@ -1,7 +1,4 @@
 ---
-- name: Add .my.cnf
-  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
-
 - name: Set root Password
   mysql_user: login_password=zabbix check_implicit_admin=yes name=root host={{ item }} password=zabbix state=present 
   with_items:
