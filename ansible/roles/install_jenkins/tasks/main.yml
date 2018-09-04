@@ -3,6 +3,7 @@
   yum:
     name: wget
     state: present
+  become: yes
 
 - name: install openjdk
   yum:

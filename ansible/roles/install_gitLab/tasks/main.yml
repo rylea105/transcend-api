@@ -1,30 +1,16 @@
 ---
 - name: Install policycoreutils-python
-  yum:
-    name: policycoreutils-python
-    state: present
-  become: yes
-
-- name: Install curl
-  yum:
-    name: curl
-    state: present
-  become: yes
-
-- name: Install openssh-server
-  yum:
-    name: openssh-server
-    state: present
+  yum: name={{item}} state=present
+  with_items:
+    - "curl"
+    - "policycoreutils" 
+    - "openssh-server" 
+    - "openssh-clients"
+    - "postfix"
   become: yes
 
 - name: Start and Enable sshd Service
   service: name=sshd state=started enabled=yes
-  become: yes
-
-- name: Install postfix
-  yum:
-    name: postfix
-    state: present
   become: yes
 
 - name: Start and Enable postfix Service
