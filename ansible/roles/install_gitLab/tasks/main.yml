@@ -22,9 +22,22 @@
   become: yes
 
 - name: get IP
-    ipify_facts:
-    become: yes
+  ipify_facts:
+  become: yes
 
 - name: Install gitLab
-  shell: sudo EXTERNAL_URL="{{ ipify_public_ip }}" yum install -y gitlab-ce
+  shell:  yum install -y gitlab-ce
   become: yes
+
+- name: set IP Address
+  replace:
+      path: /etc/gitlab/gitlab.rb
+      regexp: 'http://gitlab.example.com'
+      replace: "{{ ipify_public_ip }}"
+  become: yes
+
+- name: print ip
+  debug:
+    var: "{{ ipify_public_ip }}"
+  become: yes
+

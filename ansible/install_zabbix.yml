@@ -5,4 +5,4 @@
   become: true
   tasks:
   - import_role:
-      name: install_zabbix
+      name: install_gitLab
