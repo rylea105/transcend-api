@@ -21,6 +21,10 @@
   shell: curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
   become: yes
 
+- name: get IP
+    ipify_facts:
+    become: yes
+
 - name: Install gitLab
   shell: sudo EXTERNAL_URL="{{ ipify_public_ip }}" yum install -y gitlab-ce
   become: yes
