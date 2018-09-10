@@ -41,6 +41,10 @@
     enabled: true
   become: yes
 
+- name: Set Connect network
+  shell: setsebool -P httpd_can_network_connect 1
+  become: yes
+
 - name: sleep for 30 seconds and continue with play
   wait_for: timeout=30
   delegate_to: localhost
