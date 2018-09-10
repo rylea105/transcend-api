@@ -5,7 +5,7 @@
         instance_type: t2.micro
         image: ami-8e0205f2
         wait: yes
-        group: Transced
+        group: Transcend
         count: 1
         vpc_subnet_id: subnet-a89cd5cf
         assign_public_ip: yes
