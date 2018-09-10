@@ -1,16 +1,18 @@
+- include_vars: "instance.yml"
+
 - name: Create Instance
   ec2:
     region: "{{ region }}"
-    key_name: webServer
+    key_name: "{{ keypair }}"
     instance_type: "{{ instance_type }}"
     image: "{{ image }}"
     wait: yes
-    group: webServer
+    group: "{{ group }}"
     count: 1
-    vpc_subnet_id: "{{ vpc }}"
+    vpc_subnet_id: "{{ subnet_id }}"
     assign_public_ip: yes
     instance_tags:
-       name: webserver
+       name: project
        owner: ansible
     volumes:
      - device_name: /dev/sda1

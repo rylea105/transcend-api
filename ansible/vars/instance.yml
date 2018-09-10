@@ -1,0 +1,9 @@
+# roles/initial_ec2/vars/instance.yml
+---
+
+region: {{region}}
+keypair: {{keypair}}
+instance_type: {{ instance_type }}
+image: {{ image }}
+group: {{ security_groups }}
+subnet_id: {{ subnet_id }}

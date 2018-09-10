@@ -1,7 +1,7 @@
     - name: Create Instance
       ec2:
         region: ap-southeast-1
-        key_name: webServer
+        key_name: project
         instance_type: t2.micro
         image: ami-8e0205f2
         wait: yes
@@ -10,7 +10,7 @@
         vpc_subnet_id: subnet-a89cd5cf
         assign_public_ip: yes
         instance_tags:
-           name: webserver
+           name: fullstack
            owner: ansible
         volumes:
          - device_name: /dev/sda1
