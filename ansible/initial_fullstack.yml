@@ -10,5 +10,5 @@
    gather_facts: false
    user: centos
    roles:
-     - install_nginx
+     - install_jenkins
    
