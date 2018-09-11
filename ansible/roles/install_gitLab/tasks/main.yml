@@ -32,7 +32,7 @@
   replace:
       path: /etc/gitlab/gitlab.rb
       regexp: 'http://gitlab.example.com'
-      replace: "{{ ipify_public_ip }}"
+      replace: "http://{{ ipify_public_ip }}"
   become: yes
 
 - name: print ip
