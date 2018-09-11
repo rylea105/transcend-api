@@ -3,9 +3,8 @@
   yum: name={{item}} state=present
   with_items:
     - "curl"
-    - "policycoreutils" 
+    - "policycoreutils-python" 
     - "openssh-server" 
-    - "openssh-clients"
     - "postfix"
   become: yes
 
@@ -26,7 +25,7 @@
   become: yes
 
 - name: Install gitLab
-  shell:  yum install -y gitlab-ce
+  shell:  yum install -y gitlab-ee
   become: yes
 
 - name: set IP Address

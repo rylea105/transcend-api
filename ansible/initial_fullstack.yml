@@ -10,5 +10,4 @@
    gather_facts: false
    user: centos
    roles:
-     - install_jenkins
-   
+     - install_gitLab
