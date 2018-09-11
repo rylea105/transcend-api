@@ -35,6 +35,10 @@
       replace: "http://{{ ipify_public_ip }}"
   become: yes
 
+- name: gitlab-ctl reconfigure
+  shell: gitlab-ctl reconfigure
+  become: yes
+
 - name: print ip
   debug:
     var: "{{ ipify_public_ip }}"
