@@ -1,6 +1,6 @@
 ---
 - include_vars: "item"
-  with_item:
+  with_items:
     - "software.yml"
 
 - hosts: local
