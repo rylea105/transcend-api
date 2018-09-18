@@ -14,20 +14,7 @@
   gather_facts: false
   user: centos
   roles:
-    - install_gitLab
-  when: "{{source_code}}" == "gitlab"
-
-- hosts: aws_hosts
-  gather_facts: false
-  user: centos
-  roles:
-    - install_zabbix
-  when: "{{monitor}}" == "zabbix"
-
-- hosts: aws_hosts
-  gather_facts: false
-  user: centos
-  roles:
-    - install_jenkins
-  when: "{{ci/cd}}" == "jenkins"
+    - { role: install_gitLab, when: "{{source_code}}" == "gitlab" }
+    - { role: install_zabbix, when: "{{monitor}}" == "zabbix" }
+    - { role: install_jenkins, when: "{{ci/cd}}" == "jenkins" }
    
