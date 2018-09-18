@@ -1,9 +1,4 @@
 ---
-- name: include variables
-  include_vars: "item"
-  with_items:
-    - "software.yml"
-
 - hosts: local
   user: root
   connection: local
