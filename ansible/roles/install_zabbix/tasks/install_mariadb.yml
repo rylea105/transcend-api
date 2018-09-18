@@ -1,8 +1,12 @@
 ---
 - name: Install MariaDB
-  yum: name={{ item }} state=present
-  with_items:
-    - mariadb-server
+  shell: sudo yum install -y mariadb-server
 
-- name: Install MySQLdb Python package for secure installations.
-  yum: name=MySQL-python state=present
+- name: Start and enable service
+  service: 
+    name: mariadb 
+    state: started  
+    enabled: yes
+
+- name: mysql_secure_installation
+  shell: bash /root/transcend/ansible/roles/install_zabbix/files/installation.sh

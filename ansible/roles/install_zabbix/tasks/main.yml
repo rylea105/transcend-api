@@ -2,11 +2,5 @@
 - name: Install MariaDB
   include: install_mariadb.yml
 
-- name: Start and enable service
-  service: name=mariadb state=started enabled=yes
-
-- name: mysql secure installation
-  include: mysql_secure_installation.yml
-
-#- name: Install Zabbix
-#  include: install_zabbix.yml
+- name: Install Zabbix
+  include: install_zabbix.yml
