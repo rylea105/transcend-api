@@ -8,7 +8,7 @@
  
 - hosts: aws_hosts
   gather_facts: false
-  user: root
+  user: centos
   vars_files:
     - /root/transcend-api/ansible/vars/software.yml
   roles:
