@@ -1,5 +1,6 @@
 ---
-- include_vars: "item"
+- name: include variables
+  include_vars: "item"
   with_items:
     - "software.yml"
 
@@ -13,8 +14,10 @@
 - hosts: aws_hosts
   gather_facts: false
   user: centos
+  vars_files:
+    - /root/transcend-api/ansible/vars/software.yml
   roles:
-    - { role: install_gitLab, when: "{{source_code}}" == "gitlab" }
-    - { role: install_zabbix, when: "{{monitor}}" == "zabbix" }
-    - { role: install_jenkins, when: "{{ci/cd}}" == "jenkins" }
+    - { role: install_gitLab, when: source_code == "gitlab" }
+    - { role: install_zabbix, when: monitor == "zabbix" }
+    - { role: install_jenkins, when: ci/cd == "jenkins" }
    
