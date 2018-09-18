@@ -1,13 +1,33 @@
 ---
- - hosts: local
-   user: root
-   connection: local
-   gather_facts: false
-   roles:
-     - initial_ec2
+- include_vars: "item"
+  with_item:
+    - "software.yml"
+
+- hosts: local
+  user: root
+  connection: local
+  gather_facts: false
+  roles:
+    - initial_ec2
  
- - hosts: aws_hosts
-   gather_facts: false
-   user: centos
-   roles:
-     - install_gitLab
+- hosts: aws_hosts
+  gather_facts: false
+  user: centos
+  roles:
+    - install_gitLab
+  when: {{source_code}} == "gitlab"
+
+- hosts: aws_hosts
+  gather_facts: false
+  user: centos
+  roles:
+    - install_zabbix
+  when: {{monitor}} == "zabbix"
+
+- hosts: aws_hosts
+  gather_facts: false
+  user: centos
+  roles:
+    - install_jenkins
+  when: {{ci/cd}} == "jenkins"
+   

@@ -1,0 +1,6 @@
+# roles/initial_ec2/vars/instance.yml
+---
+
+ci/cd: ""
+source_code: ""
+monitor: "zabbix"
