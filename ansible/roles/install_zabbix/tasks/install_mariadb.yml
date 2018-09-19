@@ -6,4 +6,4 @@
   shell: sudo systemctl start mariadb | sudo systemctl enable mariadb
 
 - name: mysql_secure_installation
-  shell: sudo bash /root/transcend-api/ansible/roles/install_zabbix/tasks/files/installation.sh
+  shell: sh /root/transcend-api/ansible/roles/install_zabbix/tasks/files/installation.sh
