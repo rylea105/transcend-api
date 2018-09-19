@@ -44,3 +44,13 @@
       regexp: '#DBPassword='
       replace: 'DBPassword=transcend'
   become: true
+
+- name: set timezone
+  replace:
+      path: /etc/httpd/conf.d/zabbix.conf
+      regexp: '#php_value date.timezone Europe/Riga'
+      replace: 'php_value date.timezone Asia/Bangkok'
+  become: true
+  
+- name: Start and enable zabbix
+  shell: systemctl start zabbix-server zabbix-agent httpd | systemctl enable zabbix-server zabbix-agent httpd
