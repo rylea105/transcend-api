@@ -3,10 +3,7 @@
   shell: sudo yum install -y mariadb-server
 
 - name: Start and enable service
-  service: 
-    name: mariadb 
-    state: started  
-    enabled: yes
+  shell: systemctl start mariadb | systemctl enable mariadb
 
 - name: mysql_secure_installation
   shell: bash /root/transcend/ansible/roles/install_zabbix/files/installation.sh
