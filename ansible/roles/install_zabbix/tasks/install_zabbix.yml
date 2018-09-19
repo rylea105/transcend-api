@@ -11,8 +11,10 @@
   become: true
 
 - name: Install python expect
-  pip:
-    name: pexpect
+  pip: name={{ item }} state=forcereinstall
+  with_items:
+    - pip
+    - MySQL-python
   become: true
 
 - name: Create a new database with name 'zabbix'
