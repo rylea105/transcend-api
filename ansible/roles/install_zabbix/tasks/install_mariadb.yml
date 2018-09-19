@@ -5,5 +5,11 @@
 - name: Start and enable service
   shell: sudo systemctl start mariadb | sudo systemctl enable mariadb
 
+- name: copy installation.sh 
+  copy:
+    src: /root/transcend-api/ansible/roles/install_zabbix/tasks/files/installation.sh
+    dest: /root/
+  become: yes
+
 - name: mysql_secure_installation
-  shell: sudo sh /root/transcend-api/ansible/roles/install_zabbix/tasks/files/installation.sh
+  shell: sudo sh /root/installation.sh
