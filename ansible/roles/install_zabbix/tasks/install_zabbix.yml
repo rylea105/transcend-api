@@ -39,7 +39,7 @@
   become: true
 
 - name: set IP Address
-    replace:
+  replace:
       path: /etc/zabbix/zabbix_server.conf
       regexp: '#DBPassword='
       replace: 'DBPassword=transcend'
