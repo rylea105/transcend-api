@@ -10,10 +10,9 @@
       - "zabbix-agent"
   become: true
 
-- name: copy installation.sh 
-  copy:
-    src: /root/transcend-api/ansible/roles/install_zabbix/tasks/files/zabbix.sh
-    dest: /root/
+- name: Install python expect
+  pip:
+    name: pexpect
   become: true
 
 - name: Create a new database with name 'zabbix'
