@@ -8,13 +8,13 @@
       - "zabbix-server-mysql"
       - "zabbix-web-mysql"
       - "zabbix-agent"
-  becom: yes
+  become_user: root
 
 - name: copy installation.sh 
   copy:
     src: /root/transcend-api/ansible/roles/install_zabbix/tasks/files/zabbix.sh
     dest: /root/
-  become: yes
+  become_user: root
 
 #- name: Create a new database with name 'zabbix'
 #  mysql_db:
@@ -31,4 +31,4 @@
     command: /bin/bash -c "zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix"
     responses:
         (?i)Password: 'transcend'
-  becom: yes
+  become_user: root
