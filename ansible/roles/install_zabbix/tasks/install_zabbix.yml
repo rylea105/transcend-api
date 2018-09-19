@@ -8,6 +8,7 @@
       - "zabbix-server-mysql"
       - "zabbix-web-mysql"
       - "zabbix-agent"
+  becom: yes
 
 - name: copy installation.sh 
   copy:
@@ -30,3 +31,4 @@
     command: /bin/bash -c "zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix"
     responses:
         (?i)Password: 'transcend'
+  becom: yes
