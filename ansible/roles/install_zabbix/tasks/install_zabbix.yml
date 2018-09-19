@@ -8,27 +8,39 @@
       - "zabbix-server-mysql"
       - "zabbix-web-mysql"
       - "zabbix-agent"
-  become_user: root
+  become: true
 
 - name: copy installation.sh 
   copy:
     src: /root/transcend-api/ansible/roles/install_zabbix/tasks/files/zabbix.sh
     dest: /root/
-  become_user: root
+  become: true
 
-#- name: Create a new database with name 'zabbix'
-#  mysql_db:
-#    name: zabbix
-#    encoding: utf8
-#    collation: utf8_bin
-#    state: present
+- name: Create a new database with name 'zabbix'
+  mysql_db:
+    name: zabbix
+    encoding: utf8
+    collation: utf8_bin
+    state: present
 
-- name: Create initial database
-  shell: sudo sh /root/zabbix.sh
+- mysql_user:
+    name: 'zabbix'
+    password: 'zabbix'
+    priv: 'zabbix.*:ALL'
+    host: localhost
+    state: present
+
 
 - name: Init Zabbix Server Mariadb Database
   expect: 
     command: /bin/bash -c "zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix"
     responses:
         (?i)Password: 'transcend'
-  become_user: root
+  become: true
+
+- name: set IP Address
+    replace:
+      path: /etc/zabbix/zabbix_server.conf
+      regexp: '#DBPassword='
+      replace: 'DBPassword=transcend'
+  become: true
