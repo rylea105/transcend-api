@@ -7,3 +7,19 @@ exports.add = (req, res) => {
         return res.status(200).send(addObj);
     })
 };
+
+exports.edit = (req, res) => {
+    const editObj = new posts(req.body);
+    editObj.findByIdAndUpdate(
+        req.params.id,
+        
+        req.body,
+
+        {new: true},
+
+        (err, editObj) => {
+            if (err) return res.status(500).send(err);
+            return res.send(editObj);
+        }
+    )
+};
