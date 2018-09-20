@@ -1,5 +1,6 @@
 const posts = require('../models/post.model.js');
 
-exports.create = (req, res) => {
-    res.send('In Controller')
+exports.add = (req, res) => {
+    posts.create(req.body);
+    res.send(req.body);
 };
