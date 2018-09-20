@@ -51,7 +51,6 @@ require('./app/routes/software.routes.js')(app);
 require('./app/routes/instanceInfo.routes.js')(app);
 require('./app/routes/post.routes.js')(app);
 
-
 app.get('/create', (req, res) => {
   res.json({"message": "Creating EC2 Instance"});
   const createInstance = require('./app/models/createInstance.model.js');
