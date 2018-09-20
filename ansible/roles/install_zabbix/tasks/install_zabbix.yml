@@ -10,7 +10,7 @@
       - "zabbix-agent"
   become: true
 
-- name: Install python expect
+- name: Install python 
   pip: name={{ item }} state=forcereinstall
   with_items:
     - pip
