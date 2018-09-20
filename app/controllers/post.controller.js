@@ -9,8 +9,7 @@ exports.add = (req, res) => {
 };
 
 exports.edit = (req, res) => {
-    const editObj = new posts(req.body);
-    editObj.findByIdAndUpdate(
+    posts.findByIdAndUpdate(
         req.params.id,
         
         req.body,
