@@ -5,9 +5,3 @@ module.exports = (app) => {
 
 }
 
-module.exports = (app) => {
-    const post = require('../controllers/post.controller.js');
-
-    app.put('/post/:number', post.edit);
-
-}
