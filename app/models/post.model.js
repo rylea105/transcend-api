@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const PostSchema = mongoose.Schema({
-    number: Number,
+    id: Number,
     name: String
 }, {
     timestamps: true,
