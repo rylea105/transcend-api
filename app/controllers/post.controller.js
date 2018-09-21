@@ -1,7 +1,7 @@
-const posts = require('../models/post.model.js');
+const Posts = require('../models/post.model.js');
 
 exports.add = (req, res) => {
-    const addObj = new posts(req.body);
+    const addObj = new Posts(req.body);
     addObj.save(err =>{
         if (err) return res.status(500).send(err);
         return res.status(200).send(addObj);
@@ -9,7 +9,7 @@ exports.add = (req, res) => {
 };
 
 exports.edit = (req, res) => {
-    posts.findByIdAndUpdate(
+    Posts.findByIdAndUpdate(
         req.params.id,
         
         req.body,
@@ -22,3 +22,15 @@ exports.edit = (req, res) => {
         }
     )
 };
+
+exports.findAll = (req, res) => {
+    Posts.find()
+        .then(posts => {
+          console.log(posts);
+            res.send(posts);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving posts."
+            });
+        });
+  };
