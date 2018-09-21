@@ -8,16 +8,14 @@
       - "zabbix-server-mysql"
       - "zabbix-web-mysql"
       - "zabbix-agent"
-  become: true
+  become: yes
 
 - name: Install PIP
   include: install_pip.yml
 
 - name: Install python 
-  pip: name={{ item }} state=forcereinstall
-  with_items:
-    - MySQL-python
-  become: true
+  pip: MySQL-python state=present
+  become: yes
 
 - name: Create a new database with name 'zabbix'
   mysql_db:
@@ -39,21 +37,21 @@
     command: /bin/bash -c "zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix"
     responses:
         (?i)Password: 'transcend'
-  become: true
+  become: yes
 
 - name: set IP Address
   replace:
       path: /etc/zabbix/zabbix_server.conf
       regexp: '#DBPassword='
       replace: 'DBPassword=transcend'
-  become: true
+  become: yes
 
 - name: set timezone
   replace:
       path: /etc/httpd/conf.d/zabbix.conf
       regexp: '#php_value date.timezone Europe/Riga'
       replace: 'php_value date.timezone Asia/Bangkok'
-  become: true
+  become: yes
   
 - name: Start and enable zabbix
   shell: systemctl start zabbix-server zabbix-agent httpd | systemctl enable zabbix-server zabbix-agent httpd
