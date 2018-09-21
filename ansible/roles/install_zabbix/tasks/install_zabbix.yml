@@ -11,9 +11,7 @@
   become: true
 
 - name: Install PIP
-  easy_install:
-    name: pip
-    state: latest
+  include: install_pip.yml
 
 - name: Install python 
   pip: name={{ item }} state=forcereinstall
