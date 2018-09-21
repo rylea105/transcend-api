@@ -8,8 +8,10 @@
       - "zabbix-server-mysql"
       - "zabbix-web-mysql"
       - "zabbix-agent"
-      - "mysql-python"
   become: yes
+
+- name: Install mysql-python
+  shell: sudo yum install -y mysql-python
 
 - name: Create a new database with name 'zabbix'
   mysql_db:
