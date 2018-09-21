@@ -14,7 +14,7 @@
   include: install_pip.yml
 
 - name: Install python 
-  pip: MySQL-python state=present
+  pip: name="MySQL-python" state=present
   become: yes
 
 - name: Create a new database with name 'zabbix'
