@@ -9,12 +9,10 @@
 - name: Download get-pip.py
   get_url: url=https://bootstrap.pypa.io/get-pip.py
            dest=/tmp/get-pip.py
-  when: pip_version_output | failed or not pip_version_output.stdout | search(pip_version)
+  when: pip_version_output | failed or not pip_version_output.stdout
   become: yes
 
 - name: Install pip
-  command: "python get-pip.py pip=={{ pip_version }}"
-  when:  pip_version_output | failed or not pip_version_output.stdout | search(pip_version)
-  args:
-    chdir: /tmp
+  command: "python get-pip.py"
+  when:  pip_version_output | failed or not pip_version_output.stdout
   become: yes
