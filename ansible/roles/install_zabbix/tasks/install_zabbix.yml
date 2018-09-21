@@ -10,10 +10,14 @@
       - "zabbix-agent"
   become: true
 
+- name: Install PIP
+  easy_install:
+    name: pip
+    state: latest
+
 - name: Install python 
   pip: name={{ item }} state=forcereinstall
   with_items:
-    - pip
     - MySQL-python
   become: true
 
