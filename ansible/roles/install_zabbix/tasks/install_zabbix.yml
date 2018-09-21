@@ -8,13 +8,7 @@
       - "zabbix-server-mysql"
       - "zabbix-web-mysql"
       - "zabbix-agent"
-  become: yes
-
-- name: Install PIP
-  include: install_pip.yml
-
-- name: Install python 
-  pip: name="MySQL-python" state=present
+      - "mysql-python"
   become: yes
 
 - name: Create a new database with name 'zabbix'
