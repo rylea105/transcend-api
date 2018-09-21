@@ -13,6 +13,6 @@
   become: yes
 
 - name: Install pip
-  command: "python get-pip.py"
+  command: "python /tmp/get-pip.py"
   when:  pip_version_output | failed or not pip_version_output.stdout
   become: yes
