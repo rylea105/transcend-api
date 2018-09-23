@@ -14,5 +14,5 @@
   roles:
     - { role: install_gitLab, when: source_code == "gitlab" }
     - { role: install_zabbix, when: monitor == "zabbix" }
-    - { role: install_jenkins, when: ci/cd == "jenkins" }
+    - { role: install_jenkins, when: cicd == "jenkins" }
    
