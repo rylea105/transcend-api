@@ -72,4 +72,7 @@
     port: 10050-10051/tcp
     permanent: true
     state: enabled
+
+- name: SELinux configuration
+  shell: setsebool -P httpd_can_connect_zabbix on | setsebool -P httpd_can_network_connect_db on | setsebool -P httpd_can_network_connect on | setsebool -P zabbix_can_network on
   
