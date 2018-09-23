@@ -4,5 +4,6 @@ module.exports = (app) => {
    app.post('/post', post.add);
    app.put('/post/:id', post.edit);
    app.get('/getpost', post.findAll);
+   app.post('/checkreq', post.checkreq);
 }
 

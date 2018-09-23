@@ -1,12 +1,13 @@
 ---
 - name: Import Zabbix RPM Key 
-  shell: sudo rpm -i https://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/zabbix-release-3.4-2.el7.noarch.rpm
+  shell: sudo rpm -ivh https://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/zabbix-release-3.4-2.el7.noarch.rpm
 
 - name: Install Zabbix
   yum: name={{item}} state=present
   with_items:
       - "zabbix-server-mysql"
       - "zabbix-web-mysql"
+      - "zabbix-proxy-mysql"
       - "zabbix-agent"
       - "epel-release"
   become: yes
@@ -14,16 +15,26 @@
 - name: Install mysql-python
   shell: sudo yum install -y MySQL-python
 
+- name: copy .my.cnf to /home/centos
+  copy:
+      src: ../file/.my.cnf
+      dest: /home/centos
+  become: yes
+
 - name: Create a new database with name 'zabbix'
   mysql_db:
+    login_user: 'root'
+    login_password: 'transcend'
     name: zabbix
     encoding: utf8
     collation: utf8_bin
     state: present
 
 - mysql_user:
+    login_user: 'root'
+    login_password: 'transcend'
     name: 'zabbix'
-    password: 'zabbix'
+    password: 'transcend'
     priv: 'zabbix.*:ALL'
     host: localhost
     state: present

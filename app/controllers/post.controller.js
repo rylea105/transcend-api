@@ -34,3 +34,9 @@ exports.findAll = (req, res) => {
             });
         });
   };
+
+exports.checkreq = (req, res) => {
+    console.log(req.body.id);
+    console.log(req.body.name);
+    console.log(req.body);
+};
