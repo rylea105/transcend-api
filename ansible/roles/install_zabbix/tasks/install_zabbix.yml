@@ -64,5 +64,5 @@
   shell: sudo systemctl start zabbix-server zabbix-agent httpd | sudo systemctl enable zabbix-server zabbix-agent httpd
 
 - name: SELinux configuration
-  shell: setsebool -P httpd_can_connect_zabbix on | setsebool -P httpd_can_network_connect_db on | setsebool -P httpd_can_network_connect on | setsebool -P zabbix_can_network on
+  shell: sudo setsebool -P httpd_can_network_connect on
   
