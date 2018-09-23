@@ -15,12 +15,6 @@
 - name: Install mysql-python
   shell: sudo yum install -y MySQL-python
 
-- name: copy .my.cnf to /home/centos
-  copy:
-      src: ../file/.my.cnf
-      dest: /home/centos
-  become: yes
-
 - name: Create a new database with name 'zabbix'
   mysql_db:
     login_user: 'root'
@@ -50,14 +44,14 @@
 - name: set IP Address
   replace:
       path: /etc/zabbix/zabbix_server.conf
-      regexp: '#DBPassword='
+      regexp: '# DBPassword='
       replace: 'DBPassword=transcend'
   become: yes
 
 - name: set timezone
   replace:
       path: /etc/httpd/conf.d/zabbix.conf
-      regexp: '#php_value date.timezone Europe/Riga'
+      regexp: '# php_value date.timezone Europe/Riga'
       replace: 'php_value date.timezone Asia/Bangkok'
   become: yes
   
