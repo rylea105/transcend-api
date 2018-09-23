@@ -19,8 +19,7 @@
   include: install_pip.yml
 
 - name: Install pexpect
-  pip:
-    name: pexpect
+  shell: pip install pexpect
 
 - name: Create a new database with name 'zabbix'
   mysql_db:
