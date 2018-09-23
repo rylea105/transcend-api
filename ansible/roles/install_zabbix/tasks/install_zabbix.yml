@@ -61,7 +61,7 @@
   become: yes
   
 - name: Start and enable zabbix
-  shell: systemctl start zabbix-server zabbix-agent httpd | systemctl enable zabbix-server zabbix-agent httpd
+  shell: sudo systemctl start zabbix-server zabbix-agent httpd | sudo systemctl enable zabbix-server zabbix-agent httpd
 
 - name: Add firewall 10050 and 10051
   firewalld:
