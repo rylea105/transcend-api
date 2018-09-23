@@ -15,6 +15,14 @@
 - name: Install mysql-python
   shell: sudo yum install -y MySQL-python
 
+- name: Install pip
+  include: install_pip.yml
+
+- name: Install pexpect
+  pip:
+    name: pexpect
+    version: 4.6
+
 - name: Create a new database with name 'zabbix'
   mysql_db:
     login_user: 'root'
@@ -32,9 +40,6 @@
     priv: 'zabbix.*:ALL'
     host: localhost
     state: present
-
-- name: Install pexpect
-  shell: sudo yum install -y pexpect
 
 - name: Init Zabbix Server Mariadb Database
   expect: 
