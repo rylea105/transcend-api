@@ -60,7 +60,7 @@
 
 - name: Add firewall 10050 and 10051
   firewalld:
-    service: {{ item }}
+    service: "{{ item }}"
     permanent: true
     state: enabled
     with_items:
