@@ -33,6 +33,8 @@
     host: localhost
     state: present
 
+- name: Install pexpect
+  shell: sudo yum install -y pexpect
 
 - name: Init Zabbix Server Mariadb Database
   expect: 
