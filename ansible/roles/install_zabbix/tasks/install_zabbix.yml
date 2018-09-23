@@ -21,7 +21,6 @@
 - name: Install pexpect
   pip:
     name: pexpect
-    version: 4.6
 
 - name: Create a new database with name 'zabbix'
   mysql_db:
