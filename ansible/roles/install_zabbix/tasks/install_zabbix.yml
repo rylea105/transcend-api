@@ -57,3 +57,19 @@
   
 - name: Start and enable zabbix
   shell: systemctl start zabbix-server zabbix-agent httpd | systemctl enable zabbix-server zabbix-agent httpd
+
+- name: Add firewall 10050 and 10051
+  firewalld:
+    service: {{ item }}
+    permanent: true
+    state: enabled
+    with_items:
+      - "http"
+      - "https"
+
+- name: Add firewall port
+  firewalld:
+    port: 10050-10051/tcp
+    permanent: true
+    state: enabled
+  
