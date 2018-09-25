@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const dbConfig = require('./config/dbConfig.js');
 const mongoose = require('mongoose');
 
+var cors = require('cors');
+
 require('dotenv').config()
 
 const PORT = process.env.PORT || 3000;
@@ -35,6 +37,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
+
+// Set up a whitelist and check against it:
+var whitelist = ['http://site.kittitat.tk', 'http://api.kittitat.tk']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+//Use cors
+app.use(cors(corsOptions));
+
+
 
 
 // listen for requests
