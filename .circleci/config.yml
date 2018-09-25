@@ -17,7 +17,11 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - checkout develop
+      - checkout
+        # Log the current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
 
       # Download and cache dependencies
       - restore_cache:
