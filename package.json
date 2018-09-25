@@ -16,6 +16,6 @@
     "express-formidable": "^1.0.0",
     "faker": "^4.1.0",
     "mongoose": "^5.0.15",
-    "npm": "^6.0.0"
+    "npm": "^6.4.1"
   }
 }
