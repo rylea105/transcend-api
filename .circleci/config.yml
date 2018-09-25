@@ -38,5 +38,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
-      - run: pm2 start app.js --name="API"
+      - run: 
+          command: pm2 start app.js --name="API"
 
