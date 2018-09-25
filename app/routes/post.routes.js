@@ -2,9 +2,9 @@ module.exports = (app) => {
    const post = require('../controllers/post.controller.js');
    const cors = require('cors');
 
-   app.post('/post', post.add);
-   app.put('/post/:id', post.edit);
-   app.get('/getpost', post.findAll);
-   app.post('/checkreq', post.checkreq);
+   app.post('/post',cors(), post.add);
+   app.put('/post/:id',cors(), post.edit);
+   app.get('/getpost',cors(), post.findAll);
+   app.post('/checkreq',cors(), post.checkreq);
 }
 

@@ -54,10 +54,9 @@ require('./app/routes/post.routes.js')(app);
 app.get('/create', (req, res) => {
   res.json({"message": "Creating EC2 Instance"});
   const createInstance = require('./app/models/createInstance.model.js');
-
 });
 
-app.post('/req', function(req, res){
+app.post('/req',cors(), function(req, res){
     res.json({
       text: 'ID: ' + req.body.id + ' Name: '+ req.body.name,
     });
