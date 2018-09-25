@@ -59,6 +59,6 @@ app.get('/create', (req, res) => {
 
 app.post('/req', function(req, res){
     res.json({
-      text: 'Simple CORS requests are working. [POST] ' + req.body.id + req.body.name,
+      text: 'ID: ' + req.body.id + ' Name: '+ req.body.name,
     });
 });
