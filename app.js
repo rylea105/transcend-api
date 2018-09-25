@@ -39,15 +39,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Set up a whitelist and check against it:
-var whitelist = ['http://site.kittitat.tk', 'http://api.kittitat.tk']
 var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
+    origin: [origin_url],
+    methods: ["GET", "POST"],
+    credentials: true
 }
 
 //Use cors
