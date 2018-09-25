@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const dbConfig = require('./config/dbConfig.js');
 const mongoose = require('mongoose');
 
-var cors = require('cors');
+const formidable = require('express-formidable');
 
 require('dotenv').config()
 
@@ -38,17 +38,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
-// Set up a whitelist and check against it:
-var corsOptions = {
-    origin: [origin_url],
-    methods: ["GET", "POST"],
-    credentials: true
-}
-
-//Use cors
-app.use(cors());
-
-
+app.use(formidable({
+    encoding: 'utf-8',
+    uploadDir: '/my/dir',
+    multiples: true,
+}));
 
 
 // listen for requests

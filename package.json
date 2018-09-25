@@ -10,8 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "express-formidable": "^1.0.0",
     "faker": "^4.1.0",
     "mongoose": "^5.0.15",
     "npm": "^6.0.0"
