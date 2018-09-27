@@ -3,4 +3,4 @@
 
 cicd: ""
 source_code: ""
-monitor: "zabbix"
+monitor: ""
