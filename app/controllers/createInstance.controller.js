@@ -35,7 +35,7 @@ exports.test = (req,res) => {
   process    = spawn('sh',  ['/root/test.sh', name1, 'dodo']);
 
   process.stdout.on('data', function (data) {
-    console.log('stdout: ' + data.toString());
+    res.json({"message": data.toString()});
   });
 
   process.stderr.on('data', function (data) {
@@ -43,8 +43,6 @@ exports.test = (req,res) => {
   });
 
   process.on('exit', function (code) {
-    console.log('child process exited with code ' + code.toString());
+    res.json({"message": "Done"});
   });
-
-  res.json({"message": "Done"});
 }
