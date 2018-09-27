@@ -3,7 +3,5 @@ exports.command = (req, res) => {
 };
 
 exports.test = (req,res) => {
-  console.log(req.body.cicd);
-  console.log(req.body.code);
-  console.log(req.body.monitor);
+  const test = require('../models/test.model.js');
 }
