@@ -12,7 +12,7 @@ exports.command = (req, res) => {
     const secret = req.body.secret;
 
     var spawn = require('child_process').spawn,
-    process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',]);
+    process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh', access, secret, cicd]);
 
     process.stdout.on('data', function (data) {
       console.log('stdout: ' + data.toString());
