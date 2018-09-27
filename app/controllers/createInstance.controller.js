@@ -1,15 +1,15 @@
 exports.command = (req, res) => {
-    const region = "ap-southeast-1";
-    const keypair = req.body.keypair;
-    const instanceType = req.body.instanceType;
-    const image = req.boyy.image;
-    const group = req.body.group;
-    const subnetId = req.body.subnetId;
-    const cicd = req.body.cicd;
-    const code = req.body.code;
-    const monitor = req.body.monitor;
-    const access = req.body.access;
-    const secret = req.body.secret;
+    var region = "ap-southeast-1";
+    var keypair = req.body.keypair;
+    var instanceType = req.body.instanceType;
+    var image = req.boyy.image;
+    var group = req.body.group;
+    var subnetId = req.body.subnetId;
+    var cicd = req.body.cicd;
+    var code = req.body.code;
+    var monitor = req.body.monitor;
+    var access = req.body.access;
+    var secret = req.body.secret;
 
     var spawn = require('child_process').spawn,
     process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh', access, secret, cicd]);
@@ -30,9 +30,11 @@ exports.command = (req, res) => {
 
 exports.test = (req,res) => {
   var name1 = req.body.name1;
+  var name2 = req.body.name2;
+  var name3 = req.body.name3;
 
   var spawn = require('child_process').spawn,
-  process    = spawn('sh',  ['/root/test.sh', name1, 'dodo']);
+  process    = spawn('sh',  ['/root/test.sh', name1, name2,name3]);
 
   process.stdout.on('data', function (data) {
     console.log('stdout: ' + data.toString());
