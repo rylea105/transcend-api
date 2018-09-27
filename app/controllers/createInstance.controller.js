@@ -16,6 +16,7 @@ exports.command = (req, res) => {
 
     process.stdout.on('data', function (data) {
       console.log('stdout: ' + data.toString());
+      res.json({"message": data.toString()});
     });
 
     process.stderr.on('data', function (data) {
@@ -45,4 +46,5 @@ exports.test = (req,res) => {
   process.on('exit', function (code) {
     res.json({"message": "Done"});
   });
+
 }
