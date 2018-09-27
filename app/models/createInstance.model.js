@@ -9,7 +9,7 @@
 // const monitor = req.body.monitor;
 
 var spawn = require('child_process').spawn,
-    process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh','']);
+process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh','']);
 
 process.stdout.on('data', function (data) {
   console.log('stdout: ' + data.toString());
