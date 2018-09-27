@@ -3,6 +3,6 @@ module.exports = (app) => {
 
     // app.get('/create', createInstance.command);
 
-    app.get('/test',createInstance.test);
+    app.post('/test',createInstance.test);
 
 }
