@@ -1,0 +1,26 @@
+{
+  "name": "transcend-api",
+  "version": "1.0.0",
+  "description": "API ของ Transcend Senior Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Done\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rylea105/transcend-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rylea105/transcend-api/issues"
+  },
+  "homepage": "https://github.com/rylea105/transcend-api#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.17"
+  }
+}
