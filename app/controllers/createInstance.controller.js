@@ -16,7 +16,6 @@ exports.command = (req, res) => {
 
     process.stdout.on('data', function (data) {
       console.log('stdout: ' + data.toString());
-      res.json({"message": data.toString()});
     });
 
     process.stderr.on('data', function (data) {
@@ -36,7 +35,7 @@ exports.test = (req,res) => {
   process    = spawn('sh',  ['/root/test.sh', name1, 'dodo']);
 
   process.stdout.on('data', function (data) {
-    res.json({"message": data.toString()});
+    console.log('stdout: ' + data.toString());
   });
 
   process.stderr.on('data', function (data) {
