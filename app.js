@@ -61,19 +61,3 @@ app.post('/req',cors(), function(req, res){
     });
 });
 
-app.get('/test', (req, res)=>{
-    var spawn = require('child_process').spawn,
-    process    = spawn('ls',  ['']);
-  
-    process.stdout.on('data', function (data) {
-    console.log('stdout: ' + data.toString());
-    });
-  
-    process.stderr.on('data', function (data) {
-    console.log('stderr: ' + data.toString());
-    });
-  
-    process.on('exit', function (code) {
-    console.log('child process exited with code ' + code.toString());
-    });
-})

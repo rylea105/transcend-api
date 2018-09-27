@@ -4,7 +4,7 @@ exports.command = (req, res) => {
 
 exports.test = (req,res) => {
   var spawn = require('child_process').spawn,
-  process    = spawn('dir',  ['','']);
+  process    = spawn('sh',  ['/root/test.sh', 'dew', 'dodo']);
 
   process.stdout.on('data', function (data) {
   console.log('stdout: ' + data.toString());
