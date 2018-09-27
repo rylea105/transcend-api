@@ -2,7 +2,6 @@ const express = require('express');
 const dbConfig = require('./config/dbConfig.js');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
-const FormData = require('form-data');
 const cors = require('cors');
 
 require('dotenv').config()
