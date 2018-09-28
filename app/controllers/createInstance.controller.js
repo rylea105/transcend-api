@@ -2,7 +2,7 @@ exports.command = (req, res) => {
     var region = "ap-southeast-1";
     var keypair = req.body.keypair;
     var instanceType = req.body.instanceType;
-    var image = req.boyy.image;
+    var image = req.body.image;
     var group = req.body.group;
     var subnetId = req.body.subnetId;
     var code = req.body.code;
