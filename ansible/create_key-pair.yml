@@ -13,9 +13,3 @@
         copy: content="{{ ec2_key_result.key.private_key }}" dest="/root/project.pem" mode=0600
         when: ec2_key_result.changed
 
-      # - name: Wait for ssh to come
-      #   wait_for: 
-      #     port: 22 
-      #     delay: 30 
-      #     state: started 
-

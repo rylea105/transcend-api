@@ -3,15 +3,18 @@
 access=$1
 secret=$2
 cicd=$3
-region=$4
-keypair=$5
-instanceType=$6
-image=$7
-group=$8
-subnetId=$9
-code=$10
-monitor=$11
+code=$4
+monitor=$5
+region=$6
+keypair=$7
+instanceType=$8
+image=$9
+group=${10}
+subnetId=${11}
 
+echo $cicd
+echo $code
+echo $monitor
 
 export AWS_ACCESS_KEY_ID="$access"
 export AWS_SECRET_ACCESS_KEY="$secret"
