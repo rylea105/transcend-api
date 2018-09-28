@@ -9,11 +9,12 @@ exports.command = (req, res) => {
     // var monitor = req.body.monitor;
     // var access = req.body.access;
     // var secret = req.body.secret;
-    //var cicd = req.body.cicd;
+    var cicd = req.body.cicd;
 
+    console.log(cicd);
 
     var spawn = require('child_process').spawn,
-    process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh']);
+    process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',cicd]);
 
     process.stdout.on('data', function (data) {
       console.log(data.toString());
@@ -49,4 +50,10 @@ exports.test = (req,res) => {
     res.json({"message": "Done"});
   });
 
+}
+
+exports.checkreq = (req,res) => {
+  var cicd = req.body.cicd;
+  console.log(cicd);
+  res.json({"message": cicd});
 }

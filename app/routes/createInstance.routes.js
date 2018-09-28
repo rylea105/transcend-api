@@ -4,5 +4,6 @@ module.exports = (app) => {
     // app.get('/create', createInstance.command);
 
     app.post('/test',createInstance.test);
+    app.post('/checkcicd',createInstance.checkreq);
 
 }
