@@ -16,7 +16,7 @@ exports.command = (req, res) => {
     process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh']);
 
     process.stdout.on('data', function (data) {
-      console.log('stdout: ' + data.toString());
+      console.log(data.toString());
     });
 
     // process.stderr.on('data', function (data) {
