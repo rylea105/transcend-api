@@ -1,6 +1,6 @@
 # roles/initial_ec2/vars/instance.yml
 ---
 
-cicd: "name"
+cicd: "jenkins"
 source_code: "name"
 monitor: "name"
