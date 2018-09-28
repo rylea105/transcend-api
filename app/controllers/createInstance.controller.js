@@ -1,26 +1,27 @@
 exports.command = (req, res) => {
-    var region = "ap-southeast-1";
-    var keypair = req.body.keypair;
-    var instanceType = req.body.instanceType;
-    var image = req.boyy.image;
-    var group = req.body.group;
-    var subnetId = req.body.subnetId;
-    var cicd = req.body.cicd;
-    var code = req.body.code;
-    var monitor = req.body.monitor;
-    var access = req.body.access;
-    var secret = req.body.secret;
+    // var region = "ap-southeast-1";
+    // var keypair = req.body.keypair;
+    // var instanceType = req.body.instanceType;
+    // var image = req.boyy.image;
+    // var group = req.body.group;
+    // var subnetId = req.body.subnetId;
+    // var code = req.body.code;
+    // var monitor = req.body.monitor;
+    // var access = req.body.access;
+    // var secret = req.body.secret;
+    //var cicd = req.body.cicd;
+
 
     var spawn = require('child_process').spawn,
-    process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh', cicd]);
+    process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh']);
 
     process.stdout.on('data', function (data) {
       console.log('stdout: ' + data.toString());
     });
 
-    process.stderr.on('data', function (data) {
-      console.log('stderr: ' + data.toString());
-    });
+    // process.stderr.on('data', function (data) {
+    //   console.log('stderr: ' + data.toString());
+    // });
 
     process.on('exit', function (code) {
       console.log('child process exited with code ' + code.toString());
