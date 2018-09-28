@@ -7,14 +7,14 @@ exports.command = (req, res) => {
     // var subnetId = req.body.subnetId;
     // var code = req.body.code;
     // var monitor = req.body.monitor;
-    // var access = req.body.access;
-    // var secret = req.body.secret;
+    var access = req.body.access;
+    var secret = req.body.secret;
     var cicd = req.body.cicd;
 
     console.log(cicd);
 
     var spawn = require('child_process').spawn,
-    process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',cicd]);
+    process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,cicd]);
 
     process.stdout.on('data', function (data) {
       console.log(data.toString());

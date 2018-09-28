@@ -51,10 +51,6 @@ require('./app/routes/instanceInfo.routes.js')(app);
 require('./app/routes/post.routes.js')(app);
 require('./app/routes/createInstance.routes.js')(app);
 
-app.post('/create', (req, res) => {
-  const createInstance = require('./app/models/createInstance.model.js');
-});
-
 app.post('/req',cors(), function(req, res){
     res.json({
       text: 'ID: ' + req.body.id + ' Name: '+ req.body.name,

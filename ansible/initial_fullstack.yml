@@ -11,6 +11,7 @@
   user: centos
   vars_files:
     - /root/transcend-api/ansible/vars/software.yml
+    - /root/transcend-api/ansible/vars/instance.yml
   tasks: 
     - import_role:
         name: install_jenkins

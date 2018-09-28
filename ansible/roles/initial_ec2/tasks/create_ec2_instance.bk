@@ -1,22 +1,20 @@
-- include_vars: "instance.yml"
-
-- name: Create Instance
-  ec2:
-    region: "{{ region }}"
-    key_name: "{{ keypair }}"
-    instance_type: "{{ instance_type }}"
-    image: "{{ image }}"
-    wait: yes
-    group: "{{ group }}"
-    count: 1
-    vpc_subnet_id: "{{ subnet_id }}"
-    assign_public_ip: yes
-    instance_tags:
-       name: project
-       owner: ansible
-    volumes:
-     - device_name: /dev/sda1
-       volume_type: gp2
-       volume_size: 8
-       delete_on_termination: yes
-  register: ec2_out
+    - name: Create Instance
+      ec2:
+        region: ap-southeast-1
+        key_name: project
+        instance_type: t2.micro
+        image: ami-8e0205f2
+        wait: yes
+        group: transcend
+        count: 1
+        vpc_subnet_id: subnet-a89cd5cf
+        assign_public_ip: yes
+        instance_tags:
+           name: fullstack
+           owner: ansible
+        volumes:
+         - device_name: /dev/sda1
+           volume_type: gp2
+           volume_size: 8
+           delete_on_termination: yes
+      register: ec2_out
