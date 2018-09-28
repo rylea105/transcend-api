@@ -19,7 +19,7 @@
 
     - import_role:
         name: install_gitLab
-      when: '"{{ source_code }}" == "gitlab"'
+      when: '"{{ code }}" == "gitlab"'
 
     - import_role:
         name: install_zabbix

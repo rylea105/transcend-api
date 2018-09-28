@@ -2,5 +2,5 @@
 ---
 
 cicd: "cicd"
-source_code: "code"
+code: "code"
 monitor: "monitor"
