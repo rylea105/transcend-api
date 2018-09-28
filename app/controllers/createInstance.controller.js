@@ -22,40 +22,9 @@ exports.command = (req, res) => {
       console.log(data.toString());
     });
 
-    // process.stderr.on('data', function (data) {
-    //   console.log('stderr: ' + data.toString());
-    // });
-
     process.on('exit', function (code) {
       console.log('child process exited with code ' + code.toString());
+      res.send("Done");
     });
 
 };
-
-exports.test = (req,res) => {
-  var name1 = req.body.name1;
-  var name2 = req.body.name2;
-  var name3 = req.body.name3;
-
-  var spawn = require('child_process').spawn,
-  process    = spawn('sh',  ['/root/test.sh', name1, name2,name3]);
-
-  process.stdout.on('data', function (data) {
-    console.log('stdout: ' + data.toString());
-  });
-
-  process.stderr.on('data', function (data) {
-    console.log('stderr: ' + data.toString());
-  });
-
-  process.on('exit', function (code) {
-    res.json({"message": "Done"});
-  });
-
-}
-
-exports.checkreq = (req,res) => {
-  var cicd = req.body.cicd;
-  console.log(cicd);
-  res.json({"message": cicd});
-}
