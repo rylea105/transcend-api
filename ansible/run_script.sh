@@ -1,8 +1,8 @@
 #!/bin/bash
 
-access=$1
-secret=$2
-ci=$3
+#access=$1
+#secret=$2
+ci=$1
 
 #export AWS_ACCESS_KEY_ID="$access"
 #export AWS_SECRET_ACCESS_KEY="$secret"
