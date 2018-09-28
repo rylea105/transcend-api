@@ -11,8 +11,17 @@
   user: centos
   vars_files:
     - /root/transcend-api/ansible/vars/software.yml
-  roles:
-    - { role: install_gitLab, when: "{{ source_code }} == gitlab" }
-    - { role: install_zabbix, when: "{{ monitor }} == zabbix" }
-    - { role: install_jenkins, when: "{{ cicd }} == jenkins" }
+  tasks: 
+    - import_role:
+        name: install_jenkins
+      when: '"{{ cicd }}" == "jenkins"'
+
+    - import_role:
+        name: install_gitLab
+      when: '"{{ source_code }}" == "gitlab"'
+
+    - import_role:
+        name: install_zabbix
+      when: '"{{ monitor }}" == "zabbix"'
+    
    
