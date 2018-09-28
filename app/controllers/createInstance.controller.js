@@ -1,12 +1,12 @@
 exports.command = (req, res) => {
-    // var region = "ap-southeast-1";
-    // var keypair = req.body.keypair;
-    // var instanceType = req.body.instanceType;
-    // var image = req.boyy.image;
-    // var group = req.body.group;
-    // var subnetId = req.body.subnetId;
-    // var code = req.body.code;
-    // var monitor = req.body.monitor;
+    var region = "ap-southeast-1";
+    var keypair = req.body.keypair;
+    var instanceType = req.body.instanceType;
+    var image = req.boyy.image;
+    var group = req.body.group;
+    var subnetId = req.body.subnetId;
+    var code = req.body.code;
+    var monitor = req.body.monitor;
     var access = req.body.access;
     var secret = req.body.secret;
     var cicd = req.body.cicd;
@@ -14,7 +14,8 @@ exports.command = (req, res) => {
     console.log(cicd);
 
     var spawn = require('child_process').spawn,
-    process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,cicd]);
+    process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh'
+    ,access,secret,cicd,region,keypair,instanceType,image,group,subnetId,code,monitor]);
 
     process.stdout.on('data', function (data) {
       console.log(data.toString());
