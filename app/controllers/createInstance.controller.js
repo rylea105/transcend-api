@@ -20,6 +20,7 @@ exports.command = (req, res) => {
 
     process.on('exit', function (code) {
       console.log('child process exited with code ' + code.toString());
+      process.kill();
       res.send("Done");
     });
 
