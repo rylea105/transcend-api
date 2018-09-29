@@ -34,7 +34,7 @@ ansible-playbook /root/transcend-api/ansible/create_key-pair.yml
 ansible-playbook /root/transcend-api/ansible/initial_fullstack.yml --private-key=/root/project.pem -e "code=$code region=$region keypair=$keypair instance_type=$instanceType image=$image group=$group subnet_id=$subnetId"
 fi
 
-if [ $code == "gitlab" ]
+if [ $monitor == "zabbix" ]
 than
 ansible-playbook /root/transcend-api/ansible/create_key-pair.yml
 ansible-playbook /root/transcend-api/ansible/initial_fullstack.yml --private-key=/root/project.pem -e "monitor=$monitor region=$region keypair=$keypair instance_type=$instanceType image=$image group=$group subnet_id=$subnetId"
