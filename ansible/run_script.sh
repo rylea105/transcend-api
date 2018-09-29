@@ -12,6 +12,7 @@ image=$9
 group=${10}
 subnetId=${11}
 
+
 export AWS_ACCESS_KEY_ID="$access"
 export AWS_SECRET_ACCESS_KEY="$secret"
 
@@ -19,19 +20,19 @@ export AWS_SECRET_ACCESS_KEY="$secret"
 #ansible-playbook /root/transcend-api/ansible/initial_fullstack.yml --private-key=/root/project.pem -e "cicd=$cicd code=$code monitor=$monitor region=$region keypair=$keypair instance_type=$instanceType image=$image group=$group subnet_id=$subnetId"
 
 if [ $cicd == "jenkins" ]
-than
+then
 ansible-playbook /root/transcend-api/ansible/create_key-pair.yml
 ansible-playbook /root/transcend-api/ansible/initial_fullstack.yml --private-key=/root/project.pem -e "cicd=$cicd region=$region keypair=$keypair instance_type=$instanceType image=$image group=$group subnet_id=$subnetId"
 fi
 
 if [ $code == "gitlab" ]
-than
+then
 ansible-playbook /root/transcend-api/ansible/create_key-pair.yml
 ansible-playbook /root/transcend-api/ansible/initial_fullstack.yml --private-key=/root/project.pem -e "code=$code region=$region keypair=$keypair instance_type=$instanceType image=$image group=$group subnet_id=$subnetId"
 fi
 
 if [ $monitor == "zabbix" ]
-than
+then
 ansible-playbook /root/transcend-api/ansible/create_key-pair.yml
 ansible-playbook /root/transcend-api/ansible/initial_fullstack.yml --private-key=/root/project.pem -e "monitor=$monitor region=$region keypair=$keypair instance_type=$instanceType image=$image group=$group subnet_id=$subnetId"
 fi
