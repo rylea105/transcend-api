@@ -12,10 +12,6 @@ image=$9
 group=${10}
 subnetId=${11}
 
-echo $cicd
-echo $code
-echo $monitor
-
 export AWS_ACCESS_KEY_ID="$access"
 export AWS_SECRET_ACCESS_KEY="$secret"
 
