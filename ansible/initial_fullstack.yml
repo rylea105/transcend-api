@@ -5,7 +5,7 @@
   gather_facts: false
   roles:
     - initial_ec2
- 
+
 - hosts: aws_hosts
   gather_facts: false
   user: centos
