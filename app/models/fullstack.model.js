@@ -6,7 +6,7 @@ const FullstackSchema = mongoose.Schema({
     date: {type: Date, default: Date.now},
     status: String
 }, {
-    timestamps: true,
+    timestamps: false,
     collection: 'FullStacks'
 });
 
