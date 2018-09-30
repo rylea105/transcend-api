@@ -50,6 +50,7 @@ require('./app/routes/software.routes.js')(app);
 require('./app/routes/instanceInfo.routes.js')(app);
 require('./app/routes/post.routes.js')(app);
 require('./app/routes/createInstance.routes.js')(app);
+require('./app/routes/fullstack.routes.js')(app);
 
 app.post('/req',cors(), function(req, res){
     res.json({

@@ -11,6 +11,8 @@ exports.command = (req, res) => {
     var code = req.body.code;
     var monitor = req.body.monitor;
 
+    
+
     var spawn = require('child_process').spawn,
     process    = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,cicd,code,monitor,region,keypair,instanceType,image,group,subnetId]);
 
