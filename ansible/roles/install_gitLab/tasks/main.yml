@@ -1,0 +1,46 @@
+---
+- name: Install policycoreutils-python
+  yum: name={{item}} state=present
+  with_items:
+    - "curl"
+    - "policycoreutils-python" 
+    - "openssh-server" 
+    - "postfix"
+  become: yes
+
+- name: Start and Enable sshd Service
+  service: name=sshd state=started enabled=yes
+  become: yes
+
+- name: Start and Enable postfix Service
+  service: name=postfix state=started enabled=yes
+  become: yes
+
+- name: curl rpm
+  shell: curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
+  become: yes
+
+- name: get IP
+  ipify_facts:
+  become: yes
+
+- name: Install gitLab
+  shell:  yum install -y gitlab-ee
+  become: yes
+
+- name: set IP Address
+  replace:
+      path: /etc/gitlab/gitlab.rb
+      regexp: 'http://gitlab.example.com'
+      replace: "http://{{ ipify_public_ip }}"
+  become: yes
+
+- name: gitlab-ctl reconfigure
+  shell: gitlab-ctl reconfigure
+  become: yes
+
+- name: print ip
+  debug:
+    var: "{{ ipify_public_ip }}"
+  become: yes
+

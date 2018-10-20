@@ -1,0 +1,6 @@
+---
+- name: Install MariaDB
+  include: install_mariadb.yml
+
+- name: Install Zabbix
+  include: install_zabbix.yml
