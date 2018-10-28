@@ -34,7 +34,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
-app.use(cors({origin: '*'}));
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    next();
+  });
 
 // listen for requests
 app.listen(PORT, () => {
@@ -43,18 +48,10 @@ app.listen(PORT, () => {
 
 });
 
-// Require Hellos routes
-// require('./app/routes/hello.routes.js')(app);
 require('./app/routes/resource.routes.js')(app);
 require('./app/routes/software.routes.js')(app);
 require('./app/routes/instanceInfo.routes.js')(app);
 require('./app/routes/post.routes.js')(app);
 require('./app/routes/createInstance.routes.js')(app);
 require('./app/routes/fullstack.routes.js')(app);
-
-app.post('/req',cors(), function(req, res){
-    res.json({
-      text: 'ID: ' + req.body.id + ' Name: '+ req.body.name,
-    });
-});
 

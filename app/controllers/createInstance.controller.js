@@ -1,8 +1,9 @@
 const fullstack = require("./fullstack.controller.js");
 const log = require("./log.controller.js");
 const instance = require("./createInstance.controller.js");
+const delay = require('express-delay');
 
-exports.command = (req, res) => {
+exports.command = async (req, res) => {
     var region = "ap-southeast-1";
     var keypair = req.body.keypair;
     var instanceType = req.body.instanceType;
@@ -18,7 +19,8 @@ exports.command = (req, res) => {
     req.body.name = req.body.name
     req.body.status = "pending"
     
-    const fullstacks = fullstack.post(req,res);
+    await fullstack.post(req,res);
+    await log.post(req,res);
 
     var spawn = require('child_process').spawn,
     process = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,cicd,code,monitor,region,keypair,instanceType,image,group,subnetId]);
@@ -33,24 +35,20 @@ exports.command = (req, res) => {
     process.kill();
 
     req.body.status = "created"
-    req.body.id = test.id;
-
-    const log = log.post(req,res);
-    const edit = fullstack.edit(req,res);
+   
+    await fullstack.updateStatus(req,res);
     });
 
 };
 
 
-exports.test = (req,res) => {
-    const log = require("./log.controller.js");
-    const test = log.post(req,res);
-    req.body.id = test.id;
+exports.test = async (req,res) => {
+    await fullstack.post(req,res);
+
     req.body.status = "created";
-    //instance.test2(req,res);
+    // req.body.id = post.id
+
+    await fullstack.updateStatus(req,res);
 }
 
-exports.test2 = (req,res) => {
-    const log = require("./log.controller.js");
-    const edit = log.edit(req,res);
-}
+

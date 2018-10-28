@@ -1,0 +1,14 @@
+- name: Provision an EC2 Instances
+  import_tasks: nginx.yml
+
+- name: Curl Node 8.X
+  shell: sudo curl -sL https://rpm.nodesource.com/setup_8.x | bash -
+
+- name: Install Node.js 8.x
+  yum:
+    name: nodejs
+    state: latest
+  become: yes
+
+- name: Install install build tools
+  shell: sudo yum install gcc-c++ make

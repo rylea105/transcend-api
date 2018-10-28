@@ -3,5 +3,6 @@ module.exports = (app) => {
 
     app.get('/getfullstack', fullstack.findAll);
     app.post('/postfullstack', fullstack.postfullstack);
+    app.put('/editfullstack/:id',fullstack.edit);
 
 }

@@ -17,10 +17,9 @@ exports.find = function(res){
 exports.post = function(req,res) {
     const addObj = new Log(req.body);
     addObj.save(err =>{
-        if (err) return res.status(500).send(err);
+        if (err) res.status(500).send(err);
     });
-    console.log(addObj.id);
-    return addObj;
+    return console.log(addObj);
 };
 
 exports.edit = function(req, res) {

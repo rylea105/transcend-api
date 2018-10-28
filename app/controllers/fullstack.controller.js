@@ -1,38 +1,55 @@
 const Fullstack = require('../models/fullstack.model.js');
+var mongoose = require( 'mongoose' ); 
 
 exports.findAll = (req, res) => {
-    var find = require("./fullstack.controller.js");
-    var fullstacks = find.findall(res);
-};
-
-exports.postfullstack = function(req, res) {
-    var postfullstack = require("./fullstack.controller.js");
-    var fullstacks = postfullstack.post(req,res);
-    res.status(200).send(fullstacks);
-};
-
-exports.findall = function(res){
     Fullstack.find()
     .then(fullstacks => {
-        res.send(fullstacks);
+        res.status(200).send(fullstacks)
     }).catch(err => {
         return "Some error occurred while retrieving fullstack."
     });
 };
 
-exports.post = function(req,res) {
+exports.postfullstack = function(req, res) {
+    var fullstacks = this.post(req,res);
+    res.status(200).send(fullstacks);
+};
+
+exports.post = async (req,res) => {
     const addObj = new Fullstack(req.body);
-    addObj.save(err =>{
-        if (err) return res.status(500).send(err);
-    });
-    console.log(addObj.id);
-    return addObj;
+    await addObj.save().then(data => {
+        console.log(data)
+        return data
+    })  
 }
 
-exports.edit = function(req, res) {
-    Fullstack.findOneAndUpdate( req.body.id, req.body, {new: true}, (err, editObj) => {
-            if (err) return res.status(500).send(err);
-            res.send(editObj);
-        }
-    )
+exports.edit = (req, res) =>{
+    res.send(this.findandupdate(req,res));
 };
+
+exports.findandupdate = function(req,res){
+    Fullstack.findOneAndUpdate({id: req.body.id}, req.body , (err,editObj) => {
+        if(err){
+            console.log(err);
+        }else {
+            console.log(editObj);
+            return editObj;
+        }
+    });
+}
+
+
+
+exports.updateStatus = function(req,res){
+    Fullstack.findOne({id: req.body.id})
+    .then(data => {
+        data.status = req.body.status;
+        console.log(data);
+        data.save(err => {
+            res.status(200).send(data);
+        });
+        
+    })
+}
+
+
