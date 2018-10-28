@@ -14,13 +14,12 @@
     - /root/transcend-api/ansible/vars/instance.yml
   tasks: 
     - import_role:
-        name: install_jenkins
-      when: '"{{ cicd }}" == "jenkins"'
+        name: 'install_"{{software}}"'
 
-    - import_role:
-        name: install_zabbix
-      when: '"{{ monitor }}" == "zabbix"'
+    # - import_role:
+    #     name: install_zabbix
+    #   when: '"{{ monitor }}" == "zabbix"'
 
-    - import_role:
-        name: install_gitLab
-      when: '"{{ code }}" == "gitlab"'
+    # - import_role:
+    #     name: install_gitLab
+    #   when: '"{{ code }}" == "gitlab"'

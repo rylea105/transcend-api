@@ -10,9 +10,10 @@ exports.command = async (req, res) => {
     var subnetId = req.body.subnetId;
     var access = req.body.access;
     var secret = req.body.secret;
-    var cicd = req.body.cicd;
-    var code = req.body.code;
-    var monitor = req.body.monitor;
+    // var cicd = req.body.cicd;
+    // var code = req.body.code;
+    // var monitor = req.body.monitor;
+    var software = req.body.software;
     
     req.body.name = req.body.name
     req.body.status = "pending"
@@ -21,7 +22,7 @@ exports.command = async (req, res) => {
     await log.post(req,res);
 
     var spawn = require('child_process').spawn,
-    process = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,cicd,code,monitor,region,keypair,instanceType,image,group,subnetId]);
+    process = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software]);
 
     process.stdout.on('data', function (data) {
       console.log(data.toString());

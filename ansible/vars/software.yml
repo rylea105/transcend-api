@@ -1,6 +1,4 @@
 # roles/initial_ec2/vars/instance.yml
 ---
 
-cicd: "cicd"
-code: "code"
-monitor: "monitor"
+software: "{{software}}"
