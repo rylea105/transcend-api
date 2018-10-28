@@ -34,10 +34,11 @@ exports.command = async (req, res) => {
 
     process.kill();
 
+    });
+
     req.body.status = "created"
    
     await fullstack.updateStatus(req,res);
-    });
 
 };
 
