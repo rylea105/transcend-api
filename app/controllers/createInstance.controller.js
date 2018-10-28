@@ -1,7 +1,5 @@
 const fullstack = require("./fullstack.controller.js");
 const log = require("./log.controller.js");
-const instance = require("./createInstance.controller.js");
-const delay = require('express-delay');
 
 exports.command = async (req, res) => {
     var region = "ap-southeast-1";
