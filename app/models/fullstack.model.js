@@ -2,7 +2,12 @@ const mongoose = require('mongoose');
 
 const FullstackSchema = mongoose.Schema({
     id: Number,
-    name: String,
+    software: String,
+    instanceType: String,
+    region: String,
+    image: String,
+    group: String,
+    ip: String,
     created: {type: Date, default: Date.now},
     status: String
 }, {

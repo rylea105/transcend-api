@@ -11,15 +11,18 @@ exports.findAll = (req, res) => {
 };
 
 exports.postfullstack = function(req, res) {
-    var fullstacks = this.post(req,res);
-    res.status(200).send(fullstacks);
+    const addObj = new Fullstack(req.body);
+    addObj.save().then(data => {
+        console.log(addObj)
+        res.send(addObj)
+    }) 
 };
 
 exports.post = async (req,res) => {
     const addObj = new Fullstack(req.body);
     await addObj.save().then(data => {
-        console.log(data)
-        return data
+        console.log(addObj)
+        return addObj
     })  
 }
 

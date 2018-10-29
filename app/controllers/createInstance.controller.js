@@ -15,7 +15,6 @@ exports.command = async (req, res) => {
     // var monitor = req.body.monitor;
     var software = req.body.software;
     
-    req.body.name = req.body.name
     req.body.status = "pending"
     
     await fullstack.post(req,res);
@@ -31,14 +30,12 @@ exports.command = async (req, res) => {
     await process.on('exit', function (code) {
       console.log('child process exited with code ' + code.toString());
 
+    req.body.status = "created"
+    await fullstack.updateStatus(req,res);
+
     process.kill();
 
     });
-
-    req.body.status = "created"
-   
-    await fullstack.updateStatus(req,res);
-
 };
 
 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const LogSchema = mongoose.Schema({
     id: Number,
-    name: String,
+    software: String,
     created: {type: Date, default: Date.now},
 }, {
     timestamps: false,
