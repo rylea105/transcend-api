@@ -2,7 +2,7 @@
   import_tasks: nginx.yml
 
 - name: Curl Node 8.X and install nodejs
-  shell: sudo curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash - | yum -y install nodejs
+  shell: sudo curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash - |sudo  yum -y install nodejs
 
 - name: Install install build tools
   shell: sudo yum install gcc-c++ make
