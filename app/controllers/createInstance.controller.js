@@ -34,14 +34,16 @@ exports.child_process = async (req,res) => {
   console.log(data.toString());
 });
 
-  await process.on('exit',function (code) {
+  await process.on('exit', async function (code) {
+
   console.log('child process exited with code ' + code.toString());
-  // process.kill();
-  });
-  
+
   req.body.status = "created"
-  req.body.ip = await shell.cat('/root/ip.txt');
+  req.body.ip = shell.cat('/root/ip.txt');
   await this.postCreate(req,res);
+  });
+
+
   
 }
 
