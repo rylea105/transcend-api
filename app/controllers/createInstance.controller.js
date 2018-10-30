@@ -1,5 +1,6 @@
 const fullstack = require("./fullstack.controller.js");
 const log = require("./log.controller.js");
+var shell = require('shelljs');
 
 exports.command = async (req, res) => {
     var region = "ap-southeast-1";
@@ -24,28 +25,22 @@ exports.command = async (req, res) => {
     process = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software]);
 
     process.stdout.on('data',async  function (data) {
-      await   console.log(data.toString());
+      await console.log(data.toString());
     });
 
     process.on('exit',async  function (code) {
-      await  console.log('child process exited with code ' + code.toString());
+      await console.log('child process exited with code ' + code.toString());
+    process.kill();
+    });
 
     req.body.status = "created"
     await fullstack.updateStatus(req,res);
-
-    process.kill();
-
-    });
 };
 
 
 exports.test = async (req,res) => {
-    await fullstack.post(req,res);
-
-    req.body.status = "created";
-    // req.body.id = post.id
-
-    await fullstack.updateStatus(req,res);
+  var ip = shell.cat("/root/ip.txt");
+  console.log(ip);
 }
 
 

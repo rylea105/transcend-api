@@ -16,6 +16,9 @@
     - import_role:
         name: install_{{ software }}
 
+    - import_role:
+        name: import_IP
+
     # - import_role:
     #     name: install_zabbix
     #   when: '"{{ monitor }}" == "zabbix"'

@@ -1,0 +1,15 @@
+- name: create new file
+  file:
+     path: "/root/ip.txt"
+     mode: 644
+     state: touch
+
+- name: get IP
+  ipify_facts:
+  become: yes
+
+- name: set ip
+  copy:
+    dest: "/root/ip.txt"
+    content:
+    {{ ipify_public_ip }}
