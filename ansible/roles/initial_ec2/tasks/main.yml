@@ -20,7 +20,7 @@
   copy:
     dest: /root/instanceId.txt
     content: |
-      {{ item }}
+      {{ item.id }}
   with_items: "{{ ec2_out.instances }}"
   become: yes
 
