@@ -4,6 +4,7 @@ var shell = require('shelljs');
 
 exports.command = async (req, res) => {  
     req.body.ip = "-"
+    req.body.instanceId= "-"
     req.body.status = "pending"
     
     await this.preCreate(req,res);
