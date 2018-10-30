@@ -5,13 +5,10 @@
      state: file
   become: yes
 
-- name: get IP
-  ipify_facts:
-  become: yes
-
 - name: set ip
   copy:
     dest: "/root/ip.txt"
     content: |
-      {{ ipify_public_ip }}
+      {{ item.public_ip }}
+  with_items: "{{ ec2_out.instances }}"
   become: yes

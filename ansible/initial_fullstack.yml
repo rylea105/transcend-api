@@ -5,6 +5,7 @@
   gather_facts: false
   roles:
     - initial_ec2
+    - import_IP
 
 - hosts: aws_hosts
   gather_facts: false
@@ -15,14 +16,3 @@
   tasks: 
     - import_role:
         name: 'install_{{ software }}'
-
-    - import_role:
-        name: import_IP
-
-    # - import_role:
-    #     name: install_zabbix
-    #   when: '"{{ monitor }}" == "zabbix"'
-
-    # - import_role:
-    #     name: install_gitLab
-    #   when: '"{{ code }}" == "gitlab"'
