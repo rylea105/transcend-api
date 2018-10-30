@@ -1,17 +1,17 @@
-const Fullstack = require('../models/fullstack.model.js');
+const Instance = require('../models/instance.model.js');
 var mongoose = require( 'mongoose' ); 
 
 exports.findAll = (req, res) => {
-    Fullstack.find()
-    .then(fullstacks => {
-        res.status(200).send(fullstacks)
+    Instance.find()
+    .then(Instances => {
+        res.status(200).send(Instances)
     }).catch(err => {
-        return "Some error occurred while retrieving fullstack."
+        return "Some error occurred while retrieving Instance."
     });
 };
 
-exports.postfullstack = function(req, res) {
-    const addObj = new Fullstack(req.body);
+exports.postInstance = function(req, res) {
+    const addObj = new Instance(req.body);
     addObj.save().then(data => {
         console.log(addObj)
         res.send(addObj)
@@ -19,7 +19,7 @@ exports.postfullstack = function(req, res) {
 };
 
 exports.post = async (req,res) => {
-    const addObj = new Fullstack(req.body);
+    const addObj = new Instance(req.body);
     await addObj.save().then(data => {
         console.log(addObj)
         return addObj
@@ -31,7 +31,7 @@ exports.edit = (req, res) =>{
 };
 
 exports.findandupdate = function(req,res){
-    Fullstack.findOneAndUpdate({id: req.body.id}, req.body , (err,editObj) => {
+    Instance.findOneAndUpdate({id: req.body.id}, req.body , (err,editObj) => {
         if(err){
             console.log(err);
         }else {
@@ -44,7 +44,7 @@ exports.findandupdate = function(req,res){
 
 
 exports.updateInstance = function(req,res){
-    Fullstack.findOne({id: req.body.id})
+    Instance.findOne({id: req.body.id})
     .then(data => {
         data.status = req.body.status;
         data.ip = req.body.ip;

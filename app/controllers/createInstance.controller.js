@@ -1,4 +1,4 @@
-const fullstack = require("./fullstack.controller.js");
+const instance = require("./instance.controller.js");
 const log = require("./log.controller.js");
 var shell = require('shelljs');
 
@@ -12,7 +12,7 @@ exports.command = async (req, res) => {
 };
 
 exports.preCreate = async (req,res) => {
-  await fullstack.post(req,res);
+  await instance.post(req,res);
   await log.post(req,res);
 }
 
@@ -40,7 +40,7 @@ exports.child_process = async (req,res) => {
 
   req.body.status = "created"
   req.body.ip = shell.cat('/root/ip.txt');
-  fullstack.updateInstance(req,res);
+  instance.updateInstance(req,res);
   });
 
 
@@ -48,12 +48,12 @@ exports.child_process = async (req,res) => {
 }
 
 exports.postCreate = async (req,res) => {
-  await fullstack.updateInstance(req,res);
+  await instance.updateInstance(req,res);
 }
 
 
 exports.test = async (req,res) => {
-  res.send(shell.cat("/root/ip.txt"));
+  res.send();
 }
 
 

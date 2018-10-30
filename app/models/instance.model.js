@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const FullstackSchema = mongoose.Schema({
+const InstanceSchema = mongoose.Schema({
     id: Number,
     software: String,
     instanceType: String,
@@ -12,7 +12,7 @@ const FullstackSchema = mongoose.Schema({
     status: String
 }, {
     timestamps: false,
-    collection: 'FullStacks'
+    collection: 'Instances'
 });
 
-module.exports = mongoose.model('FullStacks', FullstackSchema);
+module.exports = mongoose.model('Instances', InstanceSchema);
