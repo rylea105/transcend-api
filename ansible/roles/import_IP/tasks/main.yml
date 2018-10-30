@@ -1,8 +1,9 @@
 - name: create new file
   file:
      path: "/root/ip.txt"
-     mode: 644
-     state: touch
+     mode: 0644
+     state: file
+  become: yes
 
 - name: get IP
   ipify_facts:
@@ -13,3 +14,4 @@
     dest: "/root/ip.txt"
     content: |
       {{ ipify_public_ip }}
+  become: yes

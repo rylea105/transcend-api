@@ -22,14 +22,14 @@ exports.command = async (req, res) => {
     await log.post(req,res);
 
     var spawn = require('child_process').spawn,
-    process = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software]);
+    process = await spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software]);
 
-    process.stdout.on('data',async  function (data) {
-      await console.log(data.toString());
+    await process.stdout.on('data',async  function (data) {
+      console.log(data.toString());
     });
 
-    process.on('exit',async  function (code) {
-      await console.log('child process exited with code ' + code.toString());
+    await process.on('exit',async  function (code) {
+      console.log('child process exited with code ' + code.toString());
     process.kill();
     });
 
