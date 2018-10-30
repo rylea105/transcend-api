@@ -11,5 +11,5 @@
 - name: set ip
   copy:
     dest: "/root/ip.txt"
-    content:
-    {{ ipify_public_ip }}
+    content: |
+      {{ ipify_public_ip }}

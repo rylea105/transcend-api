@@ -1,4 +1,4 @@
 # roles/initial_ec2/vars/instance.yml
 ---
 
-software: "{{ software }}"
+software: '{{ software }}'
