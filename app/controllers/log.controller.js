@@ -1,11 +1,6 @@
 const Log = require('../models/log.model.js');
 
-exports.findAll = (req, res) => {
-    var find = require("./fullstack.controller.js");
-    var fullstacks = find.findall(res);
-};
-
-exports.find = function(res){
+exports.findAll = function(res){
     Log.find()
     .then(logs => {
         res.send(logs);
