@@ -6,17 +6,9 @@ exports.command = async (req, res) => {
     req.body.ip = "-"
     req.body.status = "pending"
     
-    console.log("begin")
-    
     await this.preCreate(req,res);
-    
-    console.log("mid");
     await this.child_process(req,res);
     
-    req.body.status = "created"
-    req.body.ip = await shell.cat('/root/ip.txt');
-    console.log("end")
-    await this.postCreate(req,res);
 };
 
 exports.preCreate = async (req,res) => {
@@ -24,7 +16,7 @@ exports.preCreate = async (req,res) => {
   await log.post(req,res);
 }
 
-exports.child_process = (req,res) => {
+exports.child_process = async (req,res) => {
   var region = "ap-southeast-1";
   var keypair = req.body.keypair;
   var instanceType = req.body.instanceType;
@@ -36,16 +28,21 @@ exports.child_process = (req,res) => {
   var software = req.body.software;
 
   var spawn = require('child_process').spawn,
-  process = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software]);
+  process = await spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software]);
 
-  process.stdout.on('data',function (data) {
+  await process.stdout.on('data',function (data) {
   console.log(data.toString());
 });
 
-  process.on('exit',function (code) {
+  await process.on('exit',function (code) {
   console.log('child process exited with code ' + code.toString());
   // process.kill();
   });
+  
+  req.body.status = "created"
+  req.body.ip = await shell.cat('/root/ip.txt');
+  await this.postCreate(req,res);
+  
 }
 
 exports.postCreate = async (req,res) => {
