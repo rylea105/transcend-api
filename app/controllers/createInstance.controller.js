@@ -6,7 +6,10 @@ exports.command = async (req, res) => {
     req.body.ip = "-"
     req.body.status = "pending"
     
-    await this.preCreate(req,res);
+    var data = await this.preCreate(req,res);
+    
+    req.body._id = data._id;
+
     await this.child_process(req,res);
     
 };
@@ -40,6 +43,7 @@ exports.child_process = async (req,res) => {
 
   req.body.status = "created"
   req.body.ip = shell.cat('/root/ip.txt');
+
   instance.updateInstance(req,res);
   });
 

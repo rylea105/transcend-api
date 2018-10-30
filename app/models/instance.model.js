@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const InstanceSchema = mongoose.Schema({
-    id: Number,
     software: String,
     instanceType: String,
     region: String,
