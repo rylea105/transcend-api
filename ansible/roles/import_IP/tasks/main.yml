@@ -1,13 +1,14 @@
-- name: create new file
+- name: create file
   file:
-     path: "/root/ip.txt"
-     mode: 0644
-     state: file
+    path: /root/ip.txt
+    mode: 0644
+    state: touch
+
   become: yes
 
 - name: set ip
   copy:
-    dest: "/root/ip.txt"
+    dest: /root/ip.txt
     content: |
       {{ item.public_ip }}
   with_items: "{{ ec2_out.instances }}"
