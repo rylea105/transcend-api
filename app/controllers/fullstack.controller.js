@@ -43,10 +43,11 @@ exports.findandupdate = function(req,res){
 
 
 
-exports.updateStatus = function(req,res){
+exports.updateInstance = function(req,res){
     Fullstack.findOne({id: req.body.id})
     .then(data => {
         data.status = req.body.status;
+        data.ip = req.body.ip;
         console.log(data);
         data.save(err => {
             res.status(200).send(data);

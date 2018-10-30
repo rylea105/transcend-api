@@ -11,35 +11,46 @@ exports.command = async (req, res) => {
     var subnetId = req.body.subnetId;
     var access = req.body.access;
     var secret = req.body.secret;
-    // var cicd = req.body.cicd;
-    // var code = req.body.code;
-    // var monitor = req.body.monitor;
     var software = req.body.software;
-    
+  
     req.body.ip = "-"
     req.body.status = "pending"
-
     
-    await fullstack.post(req,res);
-    await log.post(req,res);
-
-    var spawn = require('child_process').spawn,
-    process = await spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software]);
-
-    await process.stdout.on('data',async  function (data) {
-      console.log(data.toString());
-    });
-
-    await process.on('exit',async  function (code) {
-      console.log('child process exited with code ' + code.toString());
-    process.kill();
-    });
-
-
+    console.log("begin")
+    
+    await this.preCreate(req,res);
+    
+    console.log("mid");
+    await this.child_process(req,res);
+    
     req.body.status = "created"
-    // req.body.ip = await shell.cat("/root/ip.txt");
-    await fullstack.updateStatus(req,res);
+    req.body.ip = "1.1.1.1"// await shell.cat('/root/ip.txt');
+    console.log("end")
+    await this.postCreate(req,res);
 };
+
+exports.preCreate = async (req,res) => {
+  await fullstack.post(req,res);
+  await log.post(req,res);
+}
+
+exports.child_process = (req,res) => {
+  var spawn = require('child_process').spawn,
+  process = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software]);
+
+  process.stdout.on('data',function (data) {
+  console.log(data.toString());
+});
+
+  process.on('exit',function (code) {
+  console.log('child process exited with code ' + code.toString());
+  // process.kill();
+  });
+}
+
+exports.postCreate = async (req,res) => {
+  await fullstack.updateInstance(req,res);
+}
 
 
 exports.test = async (req,res) => {
