@@ -1,9 +1,8 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-
-// Configuring the database
 const dbConfig = require('./config/dbConfig.js');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser')
+const cors = require('cors');
 
 require('dotenv').config()
 
@@ -30,13 +29,17 @@ mongoose.connect(dbConfig.url,mongoOptions)
 // create express app
 const app = express();
 
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// parse requests of content-type - application/json
+// // parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
-
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    next();
+  });
 
 // listen for requests
 app.listen(PORT, () => {
@@ -45,15 +48,12 @@ app.listen(PORT, () => {
 
 });
 
-// Require Hellos routes
-// require('./app/routes/hello.routes.js')(app);
 require('./app/routes/resource.routes.js')(app);
 require('./app/routes/software.routes.js')(app);
 require('./app/routes/instanceInfo.routes.js')(app);
+require('./app/routes/post.routes.js')(app);
+require('./app/routes/createInstance.routes.js')(app);
+require('./app/routes/instance.routes.js')(app);
+require('./app/routes/log.routes.js')(app);
+require('./app/routes/pricing.routes.js')(app);
 
-
-app.get('/create', (req, res) => {
-  res.json({"message": "Creating EC2 Instance"});
-  const createInstance = require('./app/models/createInstance.model.js');
-
-});

@@ -1,0 +1,18 @@
+---
+- hosts: local
+  user: root
+  connection: local
+  gather_facts: false
+  roles:
+    - initial_ec2
+    - import_IP
+
+- hosts: aws_hosts
+  gather_facts: false
+  user: centos
+  vars_files:
+    - /root/transcend-api/ansible/vars/software.yml
+    - /root/transcend-api/ansible/vars/instance.yml
+  tasks: 
+    - import_role:
+        name: 'install_{{ software }}'

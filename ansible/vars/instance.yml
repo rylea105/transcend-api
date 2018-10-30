@@ -1,0 +1,9 @@
+# roles/initial_ec2/vars/instance.yml
+---
+
+region: "ap-southeast-1"
+keypair: "project"
+instance_type: "t2.micro"
+image: "ami-8e0205f2"
+group: "transcend"
+subnet_id: "subnet-a89cd5cf"
