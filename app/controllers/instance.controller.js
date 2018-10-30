@@ -10,6 +10,14 @@ exports.findAll = (req, res) => {
     });
 };
 
+exports.findOneItem = (req,res) => {
+    Instance.findOne({_id: req.body._id})
+    .then(data => {
+        console.log(data);
+        res.send(data)
+    })
+}
+
 exports.postInstance = function(req, res) {
     const addObj = new Instance(req.body);
     addObj.save().then(data => {
@@ -20,31 +28,16 @@ exports.postInstance = function(req, res) {
 
 exports.post = async (req,res) => {
     const addObj = new Instance(req.body);
-    await addObj.save().then(data => {
-        console.log(addObj)
-        return addObj
-    })  
+    await addObj.save()
+    return addObj;
 }
 
 exports.edit = (req, res) =>{
     res.send(this.findandupdate(req,res));
 };
 
-exports.findandupdate = function(req,res){
-    Instance.findOneAndUpdate({id: req.body.id}, req.body , (err,editObj) => {
-        if(err){
-            console.log(err);
-        }else {
-            console.log(editObj);
-            return editObj;
-        }
-    });
-}
-
-
-
 exports.updateInstance = function(req,res){
-    Instance.findOne({id: req.body.id})
+    Instance.findOne({_id: req.body._id})
     .then(data => {
         data.status = req.body.status;
         data.ip = req.body.ip;

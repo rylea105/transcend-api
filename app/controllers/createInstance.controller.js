@@ -53,7 +53,11 @@ exports.postCreate = async (req,res) => {
 
 
 exports.test = async (req,res) => {
-  res.send();
+  var data = await instance.post(req,res);
+  console.log(data._id);
+  req.body._id = data._id
+  instance.findOneItem(req,res);
+
 }
 
 
