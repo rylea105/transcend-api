@@ -40,7 +40,7 @@ exports.child_process = async (req,res) => {
 
   req.body.status = "created"
   req.body.ip = shell.cat('/root/ip.txt');
-  await this.postCreate(req,res);
+  fullstack.updateInstance(req,res);
   });
 
 

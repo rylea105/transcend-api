@@ -10,19 +10,8 @@ group=$7
 subnetId=$8
 software=$9
 
-echo $access
-echo $secret
-
 export AWS_ACCESS_KEY_ID="$access"
 export AWS_SECRET_ACCESS_KEY="$secret"
-
-# if [ $software == "zabbix" ]
-# then
-# ansible-playbook /root/transcend-api/ansible/create_key-pair.yml
-# ansible-playbook /root/transcend-api/ansible/initial_fullstack.yml --private-key=/root/project.pem -e "monitor=$monitor region=$region keypair=$keypair instance_type=$instanceType image=$image group=$group subnet_id=$subnetId"
-# fi
-
-echo $software
 
 ansible-playbook /root/transcend-api/ansible/create_key-pair.yml
 
