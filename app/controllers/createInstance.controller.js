@@ -60,7 +60,6 @@ exports.test = async (req,res) => {
   console.log(data._id);
   req.body._id = data._id
   instance.findOneItem(req,res);
-
 }
 
 

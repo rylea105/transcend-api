@@ -16,11 +16,11 @@
 
   become: yes
 
-- name: set ip
+- name: set instanceID
   copy:
     dest: /root/instanceId.txt
     content: |
-      {{ item.instance_id }}
+      {{ item }}
   with_items: "{{ ec2_out.instances }}"
   become: yes
 
