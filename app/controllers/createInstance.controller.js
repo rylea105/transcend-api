@@ -6,14 +6,14 @@ exports.command = async (req, res) => {
     req.body.ip = "-"
     req.body.status = "pending"
     
-    var data = await this.preCreate(req,res);
+    await this.preCreate(req,res);
 
     await this.child_process(req,res);
     
 };
 
 exports.preCreate = async (req,res) => {
-  await instance.post(req,res);
+  var data = await instance.post(req,res);
   req.body._id = data._id;
   await log.post(req,res);
 }
