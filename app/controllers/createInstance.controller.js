@@ -24,7 +24,7 @@ exports.command = async (req, res) => {
     await this.child_process(req,res);
     
     req.body.status = "created"
-    req.body.ip = "1.1.1.1"// await shell.cat('/root/ip.txt');
+    req.body.ip = await shell.cat('/root/ip.txt');
     console.log("end")
     await this.postCreate(req,res);
 };
