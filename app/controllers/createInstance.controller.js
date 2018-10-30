@@ -7,8 +7,6 @@ exports.command = async (req, res) => {
     req.body.status = "pending"
     
     var data = await this.preCreate(req,res);
-    
-    req.body._id = data._id;
 
     await this.child_process(req,res);
     
@@ -16,6 +14,7 @@ exports.command = async (req, res) => {
 
 exports.preCreate = async (req,res) => {
   await instance.post(req,res);
+  req.body._id = data._id;
   await log.post(req,res);
 }
 
