@@ -16,7 +16,9 @@ exports.command = async (req, res) => {
     // var monitor = req.body.monitor;
     var software = req.body.software;
     
+    req.body.ip = "-"
     req.body.status = "pending"
+
     
     await fullstack.post(req,res);
     await log.post(req,res);
@@ -33,14 +35,15 @@ exports.command = async (req, res) => {
     process.kill();
     });
 
+
     req.body.status = "created"
+    // req.body.ip = await shell.cat("/root/ip.txt");
     await fullstack.updateStatus(req,res);
 };
 
 
 exports.test = async (req,res) => {
-  var ip = shell.cat("/root/ip.txt");
-  console.log(ip);
+  res.send(shell.cat("/root/ip.txt"));
 }
 
 
