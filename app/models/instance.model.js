@@ -10,7 +10,8 @@ const InstanceSchema = mongoose.Schema({
     ip: String,
     instanceId: String,
     created: {type: Date, default: Date.now},
-    status: String
+    status: String,
+    userId: String
 }, {
     timestamps: false,
     collection: 'Instances'
