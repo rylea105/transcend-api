@@ -9,7 +9,7 @@ const ResourceSchema = mongoose.Schema({
     security_group: String,
     key_pair_name: String,
     vpc_subnet: String,
-    user_id: String
+    userId: String
 }, {
     timestamps: true,
     collection: 'Resource'
