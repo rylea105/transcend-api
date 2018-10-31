@@ -56,6 +56,23 @@ exports.postCreate = async (req,res) => {
   await instance.updateInstance(req,res);
 }
 
+exports.terminate = async (req,res) => {
+    var instanceId = req.body.instanceId;
+    
+    var spawn = require('child_process').spawn,
+    process = await spawn('ansible-playbook',  ['terminate.yml','-e',"instanceId="+instanceId]);
+
+    await process.stdout.on('data',function (data) {
+      console.log(data.toString());
+    });
+    
+    await process.on('exit', async function (code) {
+    
+    res.send(isntanceID+" Terminated");
+    });
+}
+
+
 
 exports.test = async (req,res) => {
   var data = await instance.post(req,res);

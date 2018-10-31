@@ -6,7 +6,7 @@
   tasks:
       - name: Create a new EC2 key
         ec2_key:
-            name: project
+            name: {{ keypair }}
             region: ap-southeast-1
         register: ec2_key_result
 
