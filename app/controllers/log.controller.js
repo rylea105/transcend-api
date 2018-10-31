@@ -1,7 +1,7 @@
 const Log = require('../models/log.model.js');
 
 exports.findAll = function(req, res){
-    Log.find()
+    Log.find({userId: req.bodt.userId})
     .then(logs => {
         res.send(logs);
     }).catch(err => {

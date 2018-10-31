@@ -2,7 +2,7 @@ const Instance = require('../models/instance.model.js');
 var mongoose = require( 'mongoose' ); 
 
 exports.findAll = (req, res) => {
-    Instance.find()
+    Instance.find({userId: req.bodt.userId})
     .then(Instances => {
         res.status(200).send(Instances)
     }).catch(err => {
