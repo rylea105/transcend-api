@@ -18,7 +18,7 @@ exports.post = function(req,res) {
 };
 
 exports.updateInstance = function(req,res){
-    Instance.findOne({_id: req.body._id})
+    Log.findOne({_id: req.body._id})
     .then(data => {
         data.instanceId = req.body.instanceId;
         console.log(data);
