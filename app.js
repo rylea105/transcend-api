@@ -56,4 +56,5 @@ require('./app/routes/createInstance.routes.js')(app);
 require('./app/routes/instance.routes.js')(app);
 require('./app/routes/log.routes.js')(app);
 require('./app/routes/pricing.routes.js')(app);
+require('./app/routes/user.routes.js')(app);
 

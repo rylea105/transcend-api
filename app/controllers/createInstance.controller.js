@@ -68,7 +68,7 @@ exports.terminate = async (req,res) => {
     
     await process.on('exit', async function (code) {
     
-    res.send(isntanceID+" Terminated");
+    res.send(isntanceID + " Terminated");
     });
 }
 
@@ -80,5 +80,7 @@ exports.test = async (req,res) => {
   req.body._id = data._id
   instance.findOneItem(req,res);
 }
+
+
 
 
