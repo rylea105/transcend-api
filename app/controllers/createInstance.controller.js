@@ -2,7 +2,7 @@ const instance = require("./instance.controller.js");
 const log = require("./log.controller.js");
 var shell = require('shelljs');
 
-exports.command = async (req, res) => {  
+exports.command = async (req, res) => {
     req.body.ip = "-"
     req.body.instanceId= "-"
     req.body.status = "pending"
