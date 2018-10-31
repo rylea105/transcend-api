@@ -41,6 +41,7 @@ exports.updateInstance = function(req,res){
     .then(data => {
         data.status = req.body.status;
         data.ip = req.body.ip;
+        data.instanceId = req.body.instanceId;
         console.log(data);
         data.save(err => {
             res.status(200).send(data);

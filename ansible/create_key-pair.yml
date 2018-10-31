@@ -4,13 +4,13 @@
   connection: local
   gather_facts: no
   tasks:
-      - name: Create a new EC2 key
-        ec2_key:
-            name: '{{ keypair }}'
-            region: ap-southeast-1
-        register: ec2_key_result
+    - name: Create a new EC2 key
+      ec2_key:
+        name: '{{ keypair }}'
+        region: ap-southeast-1
+      register: ec2_key_result
 
-      - name: Save private key
-        copy: content="{{ ec2_key_result.key.private_key }}" dest="/root/{{ keypair }}.pem" mode=0600
-        when: ec2_key_result.changed
+    - name: Save private key
+      copy: content="{{ ec2_key_result.key.private_key }}" dest="/root/{{ keypair }}.pem" mode=0600
+      when: ec2_key_result.changed
 
