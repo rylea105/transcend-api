@@ -45,7 +45,8 @@ exports.child_process = async (req,res) => {
   req.body.ip = shell.cat('/root/ip.txt');
   req.body.instanceId = shell.cat('/root/instanceId.txt');
 
-  instance.updateInstance(req,res);
+  await instance.updateInstance(req,res);
+  await log.updateInstance(req,res);
   });
 
 

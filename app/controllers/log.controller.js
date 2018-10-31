@@ -16,3 +16,15 @@ exports.post = function(req,res) {
     });
     return console.log(addObj);
 };
+
+exports.updateInstance = function(req,res){
+    Instance.findOne({_id: req.body._id})
+    .then(data => {
+        data.instanceId = req.body.instanceId;
+        console.log(data);
+        data.save(err => {
+            res.status(200).send(data);
+        });
+        
+    })
+}
