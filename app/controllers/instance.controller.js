@@ -14,7 +14,7 @@ exports.findOneItem = (req,res) => {
     .then(data => {
         console.log(data);
         res.send(data)
-    })
+    });
 }
 
 exports.postInstance = function(req, res) {

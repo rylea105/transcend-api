@@ -2,6 +2,7 @@ const instance = require("./instance.controller.js");
 const log = require("./log.controller.js");
 const check = require("./limit.controller.js")
 var shell = require('shelljs');
+const Limit = require('../models/limit.model.js');
 
 exports.command = async (req, res) => {
     req.body.ip = "-"
@@ -10,8 +11,18 @@ exports.command = async (req, res) => {
     req.body.status = "pending"
     
     await this.preCreate(req,res);
-    //await check.checkLimit(req,res);
-    await this.child_process(req,res);
+
+    var type = req.body.instanceType;
+    var data = await Limit.findOne({userId: req.body.userId})
+    await data.instanceLimit.map(async d => {
+      if(d.instanceType === type){
+          if(d.limit > d.current){
+              await this.child_process(req,res);
+          }
+      }  
+  });
+  
+  //await this.child_process(req,res);
     
 };
 
@@ -57,6 +68,21 @@ exports.child_process = async (req,res) => {
 
 exports.postCreate = async (req,res) => {
   await instance.updateInstance(req,res);
+}
+
+exports.checkLimit = async (req,res) => {
+  var type = req.body.instanceType;
+  var data = await Limit.findOne({userId: req.body.userId})
+  data.instanceLimit.map(async d => {
+      if(d.instanceType === type){
+          console.log("check type")
+          if(d.limit > d.current){
+              console.log("check limit")
+              await this.child_process(req,res);
+          }
+      }  
+  });
+  
 }
 
 exports.terminate = async (req,res) => {
