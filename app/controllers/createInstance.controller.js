@@ -11,18 +11,18 @@ exports.command = async (req, res) => {
     req.body.status = "pending"
     
     await this.preCreate(req,res);
-    const data = req.body
 
-    var type = data.instanceType
-    var i = await Limit.findOne({userId: data.userId});
-    await i.instanceLimit.map(async d => {  
-    switch (d.instanceType){
-        case type:
-        await this.child_process(req,res);
-        }
-    });
+    // const data = req.body
+    // var type = data.instanceType
+    // var i = await Limit.findOne({userId: data.userId});
+    // await i.instanceLimit.map(async d => {  
+    // switch (d.instanceType){
+    //     case type:
+            
+    //     }
+    // });
     
-    
+    await this.child_process(req,res);
 };
 
 exports.preCreate = async (req,res) => {
