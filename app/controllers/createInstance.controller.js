@@ -7,22 +7,20 @@ const Limit = require('../models/limit.model.js');
 exports.command = async (req, res) => {
     req.body.ip = "-"
     req.body.instanceId= "-"
-    
     req.body.status = "pending"
     
-    await this.preCreate(req,res);
-
-    // const data = req.body
-    // var type = data.instanceType
-    // var i = await Limit.findOne({userId: data.userId});
-    // await i.instanceLimit.map(async d => {  
-    // switch (d.instanceType){
-    //     case type:
-            
-    //     }
-    // });
+    const data = req.body
+    var type = data.instanceType
+    var i = await Limit.findOne({userId: data.userId});
+    await i.instanceLimit.map(async d => {  
+    switch (d.instanceType){
+        case type:
+        await this.preCreate(req,res);
+        await this.child_process(req,res);
+        }
+    });
+    res.send("done")
     
-    await this.child_process(req,res);
 };
 
 exports.preCreate = async (req,res) => {

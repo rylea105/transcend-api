@@ -23,7 +23,7 @@ exports.updateInstance = function(req,res){
         data.instanceId = req.body.instanceId;
         console.log(data);
         data.save(err => {
-            res.status(200).send(data);
+            return data;
         });
         
     })
