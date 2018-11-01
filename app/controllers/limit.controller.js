@@ -4,7 +4,7 @@ const createInstance = require('./createInstance.controller.js');
 exports.checkLimit = async (req,res) => {
     var type = req.body.instanceType;
     var data = await Limit.findOne({userId: req.body.userId})
-    data.instanceLimit.map(d => {
+    data.instanceLimit.map(async d => {
         if(d.instanceType === type){
             console.log("check type")
             if(d.limit > d.current){
