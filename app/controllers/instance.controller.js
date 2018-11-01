@@ -1,5 +1,4 @@
 const Instance = require('../models/instance.model.js');
-var mongoose = require( 'mongoose' ); 
 
 exports.findAll = (req, res) => {
     Instance.find({userId: req.bodt.userId})
@@ -31,10 +30,6 @@ exports.post = async (req,res) => {
     await addObj.save()
     return addObj;
 }
-
-exports.edit = (req, res) =>{
-    res.send(this.findandupdate(req,res));
-};
 
 exports.updateInstance = function(req,res){
     Instance.findOne({_id: req.body._id})

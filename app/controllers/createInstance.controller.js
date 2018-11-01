@@ -1,15 +1,17 @@
 const instance = require("./instance.controller.js");
 const log = require("./log.controller.js");
+const check = require("./limit.controller.js")
 var shell = require('shelljs');
 
 exports.command = async (req, res) => {
     req.body.ip = "-"
     req.body.instanceId= "-"
+    
     req.body.status = "pending"
     
     await this.preCreate(req,res);
-
-    await this.child_process(req,res);
+    await check.checkLimit(req,res);
+    // await this.child_process(req,res);
     
 };
 
@@ -76,10 +78,13 @@ exports.terminate = async (req,res) => {
 
 
 exports.test = async (req,res) => {
-  var data = await instance.post(req,res);
-  console.log(data._id);
-  req.body._id = data._id
-  instance.findOneItem(req,res);
+  const limit = require("./limit.controller"); 
+  console.log("in test")
+  await limit.checkLimit(req,res)
+}
+
+exports.test2 = async(req,res) => {
+  res.send("I am ok")
 }
 
 
