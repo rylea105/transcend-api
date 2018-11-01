@@ -9,7 +9,7 @@ exports.checkLimit = async (req,res) => {
             console.log("check type")
             if(d.limit > d.current){
                 console.log("check limit")
-                await this.child_process(req,res);
+                await createInstance.child_process(req,res);
             }
         }  
     });
