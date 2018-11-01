@@ -1,19 +1,15 @@
 const Limit = require('../models/limit.model.js');
 const createInstance = require('./createInstance.controller.js');
 
-exports.checkLimit = async (req,res) => {
-    var type = req.body.instanceType;
-    var data = await Limit.findOne({userId: req.body.userId})
-    data.instanceLimit.map(async d => {
-        if(d.instanceType === type){
-            console.log("check type")
-            if(d.limit > d.current){
-                console.log("check limit")
-                await createInstance.child_process(req,res);
-            }
-        }  
+exports.checkLimit = async (data) => {
+    var type = data.instanceType
+    var limit = await Limit.findOne({userId: data.userId});
+    await limit.instanceLimit.map(async d => {  
+    switch (d.instanceType){
+        case type:
+        return d
+        }
     });
-    
 }
 
 exports.updateCurrentInstance = async function(req,res){

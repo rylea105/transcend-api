@@ -11,18 +11,17 @@ exports.command = async (req, res) => {
     req.body.status = "pending"
     
     await this.preCreate(req,res);
+    const data = req.body
 
-    var type = req.body.instanceType;
-    var data = await Limit.findOne({userId: req.body.userId})
-    await data.instanceLimit.map(async d => {
-      if(d.instanceType === type){
-          if(d.limit > d.current){
-              await this.child_process(req,res);
-          }
-      }  
-  });
-  
-  //await this.child_process(req,res);
+    var type = data.instanceType
+    var i = await Limit.findOne({userId: data.userId});
+    await i.instanceLimit.map(async d => {  
+    switch (d.instanceType){
+        case type:
+        await this.child_process(req,res);
+        }
+    });
+    
     
 };
 
@@ -104,9 +103,18 @@ exports.terminate = async (req,res) => {
 
 
 exports.test = async (req,res) => {
-  const limit = require("./limit.controller"); 
-  console.log("in test")
-  await limit.checkLimit(req,res)
+  const limit = require("./limit.controller");
+  const data = req.body
+
+  var type = data.instanceType
+  var i = await Limit.findOne({userId: data.userId});
+  await i.instanceLimit.map(async d => {  
+  switch (d.instanceType){
+      case type:
+      res.send(d)
+      }
+    });
+  
 }
 
 exports.test2 = async(req,res) => {
