@@ -19,7 +19,6 @@ exports.checkLimit = async (req,res) => {
 exports.updateCurrentInstance = async function(req,res){
     await Limit.findOne({_id: req.body._id})
     .then(data => {
-        //console.log(data);
         data.save(err => {
             res.status(200).send(data);
         });

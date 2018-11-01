@@ -1,7 +1,7 @@
 const Instance = require('../models/instance.model.js');
 
 exports.findAll = (req, res) => {
-    Instance.find({userId: req.bodt.userId})
+    Instance.find()
     .then(Instances => {
         res.status(200).send(Instances)
     }).catch(err => {

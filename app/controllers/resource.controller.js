@@ -1,7 +1,7 @@
 const Resource = require('../models/resource.model.js');
 
 exports.findAll = (req, res) => {
-  Resource.find({userId: req.body.userId})
+  Resource.find()
       .then(resources => {
         console.log(resources);
           res.send(resources);

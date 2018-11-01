@@ -10,8 +10,8 @@ exports.command = async (req, res) => {
     req.body.status = "pending"
     
     await this.preCreate(req,res);
-    await check.checkLimit(req,res);
-    // await this.child_process(req,res);
+    //await check.checkLimit(req,res);
+    await this.child_process(req,res);
     
 };
 
