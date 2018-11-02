@@ -17,6 +17,7 @@ exports.command = async (req, res) => {
         case type:
         await this.preCreate(req,res);
         await this.child_process(req,res);
+        
         }
     });
     res.send("done")
@@ -57,30 +58,14 @@ exports.child_process = async (req,res) => {
 
   await instance.updateInstance(req,res);
   await log.updateInstance(req,res);
+  await check.updateCurrent(req,res);
   });
-
-
-  
 }
 
 exports.postCreate = async (req,res) => {
   await instance.updateInstance(req,res);
 }
 
-exports.checkLimit = async (req,res) => {
-  var type = req.body.instanceType;
-  var data = await Limit.findOne({userId: req.body.userId})
-  data.instanceLimit.map(async d => {
-      if(d.instanceType === type){
-          console.log("check type")
-          if(d.limit > d.current){
-              console.log("check limit")
-              await this.child_process(req,res);
-          }
-      }  
-  });
-  
-}
 
 exports.terminate = async (req,res) => {
     var instanceId = req.body.instanceId;
@@ -102,17 +87,8 @@ exports.terminate = async (req,res) => {
 
 exports.test = async (req,res) => {
   const limit = require("./limit.controller");
-  const data = req.body
-
-  var type = data.instanceType
-  var i = await Limit.findOne({userId: data.userId});
-  await i.instanceLimit.map(async d => {  
-  switch (d.instanceType){
-      case type:
-      res.send(d)
-      }
-    });
-  
+  limit.updateCurrent(req,res);
+  res.send("done")
 }
 
 exports.test2 = async(req,res) => {

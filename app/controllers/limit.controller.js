@@ -7,17 +7,22 @@ exports.checkLimit = async (data) => {
     await limit.instanceLimit.map(async d => {  
     switch (d.instanceType){
         case type:
-        return d
+        
         }
     });
 }
 
-exports.updateCurrentInstance = async function(req,res){
-    await Limit.findOne({_id: req.body._id})
-    .then(data => {
-        data.save(err => {
-            res.status(200).send(data);
-        });
-        
-    })
+exports.updateCurrent = async function(req,res){
+    var index = -1;
+    var limit = await Limit.findOne({userId: req.body.userId});
+    await limit.instanceLimit.map(async d => {
+    if (d.instanceType === req.body.instanceType){
+        ++index;
+        limit.instanceLimit[index].current = limit.instanceLimit[index].current + 1;
+    }else{
+        ++index
+    }
+    });
+    // console.log(index);
+    limit.save();
 }
