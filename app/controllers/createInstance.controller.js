@@ -9,18 +9,20 @@ exports.command = async (req, res) => {
     req.body.instanceId= "-"
     req.body.status = "pending"
     
-    const data = req.body
-    var type = data.instanceType
-    var i = await Limit.findOne({userId: data.userId});
-    await i.instanceLimit.map(async d => {  
-    switch (d.instanceType){
-        case type:
-        await this.preCreate(req,res);
-        await this.child_process(req,res);
+
+    await this.preCreate(req,res);
+    await this.child_process(req,res);
+    // const data = req.body
+    // var type = data.instanceType
+    // var i = await Limit.findOne({userId: data.userId});
+    // await i.instanceLimit.map(async d => {
+    // switch (d.instanceType){
+    //     case type:
         
-        }
-    });
-    res.send("done")
+        
+    //     }
+    // });
+    // res.send("done")
     
 };
 
@@ -58,7 +60,7 @@ exports.child_process = async (req,res) => {
 
   await instance.updateInstance(req,res);
   await log.updateInstance(req,res);
-  await check.updateCurrent(req,res);
+  // await check.updateCurrent(req,res);
   });
 }
 
