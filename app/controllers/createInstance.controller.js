@@ -69,9 +69,11 @@ exports.postCreate = async (req,res) => {
 
 exports.terminate = async (req,res) => {
     var instanceId = req.body.instanceId;
+    var access = req.body.access;
+    var secret = req.body.secret;
     
     var spawn = require('child_process').spawn,
-    process = await spawn('sh',  ['/root/transcend-api/ansible/terminate',instanceId]);
+    process = await spawn('sh',  ['/root/transcend-api/ansible/terminate',instanceId,access,secret]);
 
     await process.stdout.on('data',function (data) {
       console.log(data.toString());
