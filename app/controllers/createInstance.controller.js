@@ -80,8 +80,9 @@ exports.terminate = async (req,res) => {
     });
     
     await process.on('exit', async function (code) {
-    
-    console.log('child process exited with code ' + code.toString());
+    await check.increaseCurrent(req,res)
+    await log.deleteLog(req,res);
+    await instance.deleteInstance(req,res);
     });
 }
 

@@ -28,3 +28,11 @@ exports.updateInstance = function(req,res){
         
     })
 }
+
+exports.deleteLog = function(req,res){
+    Log.deleteOne({instanceId: req.body.isntanceId})
+    .then(data => {
+        console.log("delete: "+data)
+    })
+}
+

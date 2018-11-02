@@ -23,6 +23,19 @@ exports.updateCurrent = async function(req,res){
         ++index
     }
     });
-    // console.log(index);
+    limit.save();
+}
+
+exports.increase = (req,res) => {
+    var index = -1;
+    var limit = await Limit.findOne({userId: req.body.userId});
+    await limit.instanceLimit.map(async d => {
+    if (d.instanceType === req.body.instanceType){
+        ++index;
+        limit.instanceLimit[index].current = limit.instanceLimit[index].current - 1;
+    }else{
+        ++index
+    }
+    });
     limit.save();
 }
