@@ -79,7 +79,7 @@ exports.terminate = async (req,res) => {
     
     await process.on('exit', async function (code) {
     
-    res.send(instanceId + " Terminated");
+    console.log('child process exited with code ' + code.toString());
     });
 }
 
