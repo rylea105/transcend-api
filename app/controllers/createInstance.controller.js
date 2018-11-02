@@ -71,7 +71,7 @@ exports.terminate = async (req,res) => {
     var instanceId = req.body.instanceId;
     
     var spawn = require('child_process').spawn,
-    process = await spawn('ansible-playbook',  ['terminate.yml','-e',"instanceId="+instanceId]);
+    process = await spawn('sh',  ['/root/transcend-api/ansible/terminate',instanceId]);
 
     await process.stdout.on('data',function (data) {
       console.log(data.toString());
@@ -79,7 +79,7 @@ exports.terminate = async (req,res) => {
     
     await process.on('exit', async function (code) {
     
-    res.send(isntanceID + " Terminated");
+    res.send(instanceId + " Terminated");
     });
 }
 
