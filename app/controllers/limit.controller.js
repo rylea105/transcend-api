@@ -26,7 +26,7 @@ exports.updateCurrent = async function(req,res){
     limit.save();
 }
 
-exports.increase = (req,res) => {
+exports.increaseCurrent = async (req,res) => {
     var index = -1;
     var limit = await Limit.findOne({userId: req.body.userId});
     await limit.instanceLimit.map(async d => {
