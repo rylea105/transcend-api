@@ -13,7 +13,7 @@ exports.command = async (req, res) => {
     await software.map(async s => {
       req.body.oneSoftware = s;
       await this.preCreate(req,res);
-      await this.child_process(req,res);
+      return await this.child_process(req,res);
     })
     
     //await this.child_process(req,res);
