@@ -10,7 +10,7 @@ exports.command = async (req, res) => {
     req.body.status = "pending"
     
     var software = req.body.software;
-    software.map(async s => {
+    await software.map(async s => {
       req.body.oneSoftware = s;
       await this.preCreate(req,res);
       await this.child_process(req,res);
