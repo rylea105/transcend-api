@@ -9,9 +9,14 @@ exports.command = async (req, res) => {
     req.body.instanceId= "-"
     req.body.status = "pending"
     
-
-    await this.preCreate(req,res);
-    await this.child_process(req,res);
+    var software = req.body.software;
+    software.map(s => {
+      req.body.oneSoftware = s;
+      await this.preCreate(req,res);
+      await this.child_process(req,res);
+    })
+    
+    //await this.child_process(req,res);
     // const data = req.body
     // var type = data.instanceType
     // var i = await Limit.findOne({userId: data.userId});
@@ -41,7 +46,7 @@ exports.child_process = async (req,res) => {
   var subnetId = req.body.subnetId;
   var access = req.body.access;
   var secret = req.body.secret;
-  var software = req.body.software;
+  var software = req.body.oneSoftware;
 
   var spawn = require('child_process').spawn,
   process = await spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software]);
@@ -91,9 +96,11 @@ exports.terminate = async (req,res) => {
 
 
 exports.test = async (req,res) => {
-  const limit = require("./limit.controller");
-  limit.updateCurrent(req,res);
-  res.send("done")
+  var software = req.body.software;
+  software.map(s => {
+    console.log(s)
+  })
+  res.send(software);
 }
 
 exports.test2 = async(req,res) => {
