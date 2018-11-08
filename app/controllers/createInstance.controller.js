@@ -97,10 +97,11 @@ exports.terminate = async (req,res) => {
 
 exports.test = async (req,res) => {
   var software = req.body.software;
-  software.map(s => {
-    console.log(s)
+  await software.map(async s => {
+    req.body.oneSoftware = s;
+    await instance.post(req,res);
   })
-  res.send(software);
+  
 }
 
 exports.test2 = async(req,res) => {
