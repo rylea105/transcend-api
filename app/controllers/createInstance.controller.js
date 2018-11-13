@@ -64,7 +64,7 @@ exports.child_process = async (req,res) => {
   req.body.instanceId = shell.cat('/root/instanceId.txt');
 
   await instance.updateInstance(req,res);
-  await log.updateInstance(req,res);
+  return await log.updateInstance(req,res);
   // await check.updateCurrent(req,res);
   });
 }

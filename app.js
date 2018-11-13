@@ -1,8 +1,10 @@
 const express = require('express');
+const app = express();
 const dbConfig = require('./config/dbConfig.js');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
-const cors = require('cors');
+var http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 require('dotenv').config()
 
@@ -27,7 +29,7 @@ mongoose.connect(dbConfig.url,mongoOptions)
 });
 
 // create express app
-const app = express();
+
 
 // // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,11 +44,21 @@ app.use((req, res, next) => {
   });
 
 // listen for requests
-app.listen(PORT, () => {
+http.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 
 
 });
+
+   app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+  });
+
+  io.on('connection', function(socket){
+    socket.on('chat message', function(msg){
+      io.emit('chat message', msg);
+    });
+  });
 
 require('./app/routes/resource.routes.js')(app);
 require('./app/routes/software.routes.js')(app);
