@@ -50,11 +50,13 @@ http.listen(PORT, () => {
 
 });
 
-   app.get('/', function(req, res){
+
+app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
   });
 
   io.on('connection', function(socket){
+    console.log('a user connected');
     socket.on('chat message', function(msg){
       io.emit('chat message', msg);
     });
