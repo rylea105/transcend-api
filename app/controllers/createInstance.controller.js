@@ -52,7 +52,8 @@ exports.child_process = async (req,res) => {
   process = await spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software]);
 
   await process.stdout.on('data',function (data) {
-  console.log(data.toString());
+    io.emit('log', data.toString());
+    console.log(data.toString());
 });
 
   await process.on('exit', async function (code) {
