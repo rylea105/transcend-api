@@ -57,8 +57,8 @@ app.get('/', function(req, res){
 
   io.on('connection', function(socket){
     console.log('a user connected');
-    socket.on('message', function(msg){
-      io.emit('message', msg);
+    socket.on('disconnect', function(){
+      console.log('user disconnected');
     });
   });
 
@@ -76,13 +76,13 @@ var Message = mongoose.model('Message',{
   message : String
 })
 
-app.get('/messages', (req, res) => {
+app.get('/getMessages', (req, res) => {
   Message.find({},(err, messages)=> {
     res.send(messages);
   })
 })
 
-app.post('/messages', (req, res) => {
+app.post('/postMessages', (req, res) => {
   var message = new Message(req.body);
   message.save((err) =>{
     if(err)
