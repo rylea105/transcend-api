@@ -1,5 +1,6 @@
 const InstanceInfo = require('../models/instanceInfo.model.js');
 
+
 exports.findAll = (req, res) => {
   InstanceInfo.find()
       .then(instanceInfos => {

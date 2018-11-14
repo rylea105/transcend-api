@@ -21,8 +21,10 @@ exports.postInstance = function(req, res) {
     const addObj = new Instance(req.body);
     addObj.save().then(data => {
         console.log(addObj)
-        res.send(addObj)
-    }) 
+        
+    })
+    io.emit('instance', addObj);
+    res.send(addObj)
 };
 
 exports.post = async (req,res) => {
