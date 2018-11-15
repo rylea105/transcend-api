@@ -58,7 +58,10 @@ require('./app/routes/log.routes.js')(app);
 require('./app/routes/pricing.routes.js')(app);
 require('./app/routes/user.routes.js')(app);
 
-app.use(express.static(__dirname));
+
+app.get('/io',(req,res)=>{
+  res.sendFile(__dirname + '/index.html');
+})
 
 var Message = mongoose.model('Message',{
   name : String,
