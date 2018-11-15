@@ -30,20 +30,19 @@
         $("#send").click(()=>{
             sendMessage({name: $("#name").val(), message: $("#message").val()});
         })
-        getMessages();
+        getMessages()
     })
     socket.on('message', addMessages)
     function addMessages(message){
-        $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`);
+        $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
     }
     function getMessages(){
-      $.get('http://localhost:3001/getMessages', (data) => {
+      $.get('http://localhost:3001/messages', (data) => {
         data.forEach(addMessages);
-      });
+      })
     }
     function sendMessage(message){
-      $.post('http://localhost:3001/postMessages', message);
-
+      $.post('http://localhost:3001/messages', message)
     }
 </script>
 </body>
