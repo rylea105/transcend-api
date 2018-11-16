@@ -59,7 +59,7 @@ require('./app/routes/pricing.routes.js')(app);
 require('./app/routes/user.routes.js')(app);
 
 
-app.get('/io',(req,res)=>{
+app.get('/',(req,res)=>{
   res.sendFile(__dirname + '/index.html');
 })
 
