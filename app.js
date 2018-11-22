@@ -74,9 +74,9 @@ pusher.trigger('my-channel', 'my-event', {
 
 
 
-// app.get('/',(req,res)=>{
-//   res.sendFile(__dirname + '/index.html');
-// })
+app.get('/',(req,res)=>{
+  res.sendFile(__dirname + '/index.html');
+})
 
 // var Message = mongoose.model('Message',{
 //   name : String,
