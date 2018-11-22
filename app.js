@@ -58,57 +58,72 @@ require('./app/routes/log.routes.js')(app);
 require('./app/routes/pricing.routes.js')(app);
 require('./app/routes/user.routes.js')(app);
 
+var Pusher = require('pusher');
 
-app.get('/',(req,res)=>{
-  res.sendFile(__dirname + '/index.html');
-})
+var pusher = new Pusher({
+  appId: '655442',
+  key: '0166028e90d5f866ad53',
+  secret: '258bef942e8145a3b62b',
+  cluster: 'ap1',
+  encrypted: true
+});
 
-var Message = mongoose.model('Message',{
-  name : String,
-  message : String
-})
-
-app.get('/messages', (req, res) => {
-  Message.find({},(err, messages)=> {
-    res.send(messages);
-  })
-})
-
-
-app.get('/messages/:user', (req, res) => {
-  var user = req.params.user
-  Message.find({name: user},(err, messages)=> {
-    res.send(messages);
-  })
-})
-
-
-app.post('/messages', async (req, res) => {
-  try{
-    var message = new Message(req.body);
-
-    var savedMessage = await message.save()
-      console.log('saved');
-
-    var censored = await Message.findOne({message:'badword'});
-      if(censored)
-        await Message.remove({_id: censored.id})
-      else
-        io.emit('message', req.body);
-      res.sendStatus(200);
-  }
-  catch (error){
-    res.sendStatus(500);
-    return console.log('error',error);
-  }
-  finally{
-    console.log('Message Posted')
-  }
-
-})
+pusher.trigger('my-channel', 'my-event', {
+  "message": "hello world"
+});
 
 
 
-io.on('connection', () =>{
-  console.log('a user is connected')
-})
+// app.get('/',(req,res)=>{
+//   res.sendFile(__dirname + '/index.html');
+// })
+
+// var Message = mongoose.model('Message',{
+//   name : String,
+//   message : String
+// })
+
+// app.get('/messages', (req, res) => {
+//   Message.find({},(err, messages)=> {
+//     res.send(messages);
+//   })
+// })
+
+
+// app.get('/messages/:user', (req, res) => {
+//   var user = req.params.user
+//   Message.find({name: user},(err, messages)=> {
+//     res.send(messages);
+//   })
+// })
+
+
+// app.post('/messages', async (req, res) => {
+//   try{
+//     var message = new Message(req.body);
+
+//     var savedMessage = await message.save()
+//       console.log('saved');
+
+//     var censored = await Message.findOne({message:'badword'});
+//       if(censored)
+//         await Message.remove({_id: censored.id})
+//       else
+//         io.emit('message', req.body);
+//       res.sendStatus(200);
+//   }
+//   catch (error){
+//     res.sendStatus(500);
+//     return console.log('error',error);
+//   }
+//   finally{
+//     console.log('Message Posted')
+//   }
+
+// })
+
+
+
+// io.on('connection', () =>{
+//   console.log('a user is connected')
+// })
