@@ -1,8 +1,8 @@
 ---
-- name: Install jenkins
+- name: Install devStack
   hosts: local
   gather_facts: false
   become: true
   tasks:
   - import_role:
-      name: install_gitLab
+      name: devStack
