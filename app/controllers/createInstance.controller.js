@@ -9,6 +9,7 @@ const SLASH_DMYHMS = 'DD/MM/YYYY HH:mm:ss';
 exports.command = async (req, res) => {
     req.body.ip = "-"
     req.body.instanceId= "-"
+    req.body.finished="-"
     req.body.status = "pending"
     
     await this.preCreate(req,res);
