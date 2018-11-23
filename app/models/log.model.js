@@ -7,7 +7,7 @@ const LogSchema = mongoose.Schema({
     software: String,
     instanceId: String,
     finished: {type: Date},
-    started: {type: Date, default: moment().format(SLASH_DMYHMS)},
+    started: {type: Date, default: Date.now},
     userId: String
 }, {
     timestamps: false,
