@@ -50,7 +50,7 @@ exports.child_process = async (req,res) => {
   req.body.finished = Date.now;
 
   await instance.updateInstance(req,res);
-  await log.updateInstance(req,res);
+  await log.updateLog(req,res);
   res.send("Done")
   });
 }

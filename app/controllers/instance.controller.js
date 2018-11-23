@@ -34,16 +34,15 @@ exports.post = async (req,res) => {
     return addObj;
 }
 
-exports.updateInstance = function(req,res){
+exports.updateInstance = async function(req,res){
     Instance.findOne({_id: req.body._id})
     .then(data => {
         data.status = req.body.status;
         data.ip = req.body.ip;
         data.instanceId = req.body.instanceId;
         console.log(data);
-        data.save(err => {
-            return data;
-        });
+        await data.save();
+        return data;
         
     })
 }

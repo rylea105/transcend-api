@@ -15,15 +15,14 @@ exports.post = async function(req,res) {
     return addObj;
 };
 
-exports.updateInstance = function(req,res){
+exports.updateLog = async function(req,res){
     Log.findOne({_id: req.body._id})
     .then(data => {
         data.instanceId = req.body.instanceId;
         data.finished = req.body.finished;
         console.log(data);
-        data.save(err => {
-            res.send(data);
-        });
+        await data.save();
+        return data;
         
     })
 }
