@@ -58,25 +58,25 @@ require('./app/routes/log.routes.js')(app);
 require('./app/routes/pricing.routes.js')(app);
 require('./app/routes/user.routes.js')(app);
 
-var Pusher = require('pusher');
+// var Pusher = require('pusher');
 
-var pusher = new Pusher({
-  appId: '655442',
-  key: '0166028e90d5f866ad53',
-  secret: '258bef942e8145a3b62b',
-  cluster: 'ap1',
-  encrypted: true
-});
+// var pusher = new Pusher({
+//   appId: '655442',
+//   key: '0166028e90d5f866ad53',
+//   secret: '258bef942e8145a3b62b',
+//   cluster: 'ap1',
+//   encrypted: true
+// });
 
-pusher.trigger('my-channel', 'my-event', {
-  "message": "hello world"
-});
+// pusher.trigger('my-channel', 'my-event', {
+//   "message": "hello world"
+// });
 
 
 
-app.get('/',(req,res)=>{
-  res.sendFile(__dirname + '/index.html');
-})
+// app.get('/',(req,res)=>{
+//   res.sendFile(__dirname + '/index.html');
+// })
 
 // var Message = mongoose.model('Message',{
 //   name : String,

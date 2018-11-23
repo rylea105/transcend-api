@@ -2,7 +2,7 @@
 mysql_secure_installation <<EOF
 
 y
-transcend
+admin
 transcend
 y
 y

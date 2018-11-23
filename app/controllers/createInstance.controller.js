@@ -3,18 +3,16 @@ const log = require("./log.controller.js");
 const check = require("./limit.controller.js")
 var shell = require('shelljs');
 const Limit = require('../models/limit.model.js');
+const moment = require('moment');
+const SLASH_DMYHMS = 'DD/MM/YYYY HH:mm:ss';
 
 exports.command = async (req, res) => {
     req.body.ip = "-"
     req.body.instanceId= "-"
     req.body.status = "pending"
     
-    var software = req.body.software;
-    await software.map(async s => {
-      req.body.oneSoftware = s;
-      await this.preCreate(req,res);
-      return await this.child_process(req,res);
-    })
+    await this.preCreate(req,res);
+    await this.child_process(req,res);
     
     //await this.child_process(req,res);
     // const data = req.body
@@ -63,10 +61,10 @@ exports.child_process = async (req,res) => {
   req.body.status = "created"
   req.body.ip = shell.cat('/root/ip.txt');
   req.body.instanceId = shell.cat('/root/instanceId.txt');
+  req.body.finished = moment().format(SLASH_DMYHMS);
 
   await instance.updateInstance(req,res);
-  return await log.updateInstance(req,res);
-  // await check.updateCurrent(req,res);
+  await log.updateInstance(req,res);
   });
 }
 
@@ -94,20 +92,13 @@ exports.terminate = async (req,res) => {
     });
 }
 
-
+const moment = require('moment');
+const SLASH_DMYHMS = 'DD/MM/YYYY HH:mm:ss';
 
 exports.test = async (req,res) => {
-  var software = req.body.software;
-  await software.map(async s => {
-    req.body.oneSoftware = s;
-    await instance.post(req,res);
-  })
-  
+  console.log(moment().format(SLASH_DMYHMS));
 }
 
-exports.test2 = async(req,res) => {
-  res.send("I am ok")
-}
 
 
 

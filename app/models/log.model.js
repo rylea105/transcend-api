@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
+const SLASH_DMYHMS = 'DD/MM/YYYY HH:mm:ss';
+
 
 const LogSchema = mongoose.Schema({
     software: String,
     instanceId: String,
-    created: {type: Date, default: Date.now},
+    finished: {type: Date},
+    started: {type: Date, default: moment().format(SLASH_DMYHMS)},
     userId: String
 }, {
     timestamps: false,

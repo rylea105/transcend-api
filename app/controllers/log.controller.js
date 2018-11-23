@@ -21,9 +21,10 @@ exports.updateInstance = function(req,res){
     Log.findOne({_id: req.body._id})
     .then(data => {
         data.instanceId = req.body.instanceId;
+        data.finished = req.body.finished;
         console.log(data);
         data.save(err => {
-            return data;
+            res.send(data);
         });
         
     })
