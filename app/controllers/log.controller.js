@@ -9,12 +9,10 @@ exports.findAll = function(req, res){
     });
 };
 
-exports.post = function(req,res) {
+exports.post = async function(req,res) {
     const addObj = new Log(req.body);
-    addObj.save(err =>{
-        if (err) res.status(500).send(err);
-    });
-    return console.log(addObj);
+    await addObj.save();
+    return addObj;
 };
 
 exports.updateInstance = function(req,res){
