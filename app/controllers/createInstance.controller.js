@@ -93,9 +93,6 @@ exports.terminate = async (req,res) => {
     });
 }
 
-const moment = require('moment');
-const SLASH_DMYHMS = 'DD/MM/YYYY HH:mm:ss';
-
 exports.test = async (req,res) => {
   console.log(moment().format(SLASH_DMYHMS));
 }
