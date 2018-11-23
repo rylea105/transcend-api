@@ -9,25 +9,10 @@ const SLASH_DMYHMS = 'DD/MM/YYYY HH:mm:ss';
 exports.command = async (req, res) => {
     req.body.ip = "-"
     req.body.instanceId= "-"
-    req.body.finished="-"
     req.body.status = "pending"
     
     await this.preCreate(req,res);
     await this.child_process(req,res);
-    
-    //await this.child_process(req,res);
-    // const data = req.body
-    // var type = data.instanceType
-    // var i = await Limit.findOne({userId: data.userId});
-    // await i.instanceLimit.map(async d => {
-    // switch (d.instanceType){
-    //     case type:
-        
-        
-    //     }
-    // });
-    // res.send("done")
-    
 };
 
 exports.preCreate = async (req,res) => {
@@ -51,7 +36,7 @@ exports.child_process = async (req,res) => {
   process = await spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software]);
 
   await process.stdout.on('data',function (data) {
-    io.emit('log', data.toString());
+    // io.emit('log', data.toString());
     console.log(data.toString());
 });
 
@@ -66,6 +51,7 @@ exports.child_process = async (req,res) => {
 
   await instance.updateInstance(req,res);
   await log.updateInstance(req,res);
+  res.send("Done")
   });
 }
 

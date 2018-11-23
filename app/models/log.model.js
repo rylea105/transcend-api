@@ -6,7 +6,7 @@ const SLASH_DMYHMS = 'DD/MM/YYYY HH:mm:ss';
 const LogSchema = mongoose.Schema({
     software: String,
     instanceId: String,
-    finished: {type: Date},
+    finished: {type: Date, default: Date.now},
     started: {type: Date, default: Date.now},
     userId: String
 }, {
