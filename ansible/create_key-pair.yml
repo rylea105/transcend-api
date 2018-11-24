@@ -6,10 +6,8 @@
   tasks:
       - name: Create a new EC2 key
         ec2_key:
-            name: {{ keypair }}
+            name: "{{ keypair }}"
             region: ap-southeast-1
-            aws_access_key: "{{ access }}"
-            aws_secret_key: "{{ secret }}"
         register: ec2_key_result
 
       - name: Save private key
