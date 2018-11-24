@@ -3,8 +3,6 @@
   gather_facts: false
   connection: local
   become: true
-  vars_files:
-    - /root/transcend-api/ansible/vars/instance.yml
   roles:
     - initial_ec2
     - import_IP
@@ -14,6 +12,7 @@
   user: centos
   vars_files:
     - /root/transcend-api/ansible/vars/software.yml
+    - /root/transcend-api/ansible/vars/instance.yml
   tasks: 
     - import_role:
         name: 'install_{{ software }}'
