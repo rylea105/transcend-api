@@ -1,5 +1,5 @@
-- name: Setting up Security/Firewall Group
-  import_tasks: setting_up_firewall.yml
+# - name: Setting up Security/Firewall Group
+#   import_tasks: setting_up_firewall.yml
 
 - name: Provision an EC2 Instances
   import_tasks: create_ec2_instance.yml
