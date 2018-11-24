@@ -36,7 +36,7 @@ exports.post = async (req,res) => {
 
 exports.updateInstance = async function(req,res){
     Instance.findOne({_id: req.body._id})
-    .then(data => {
+    .then(async data => {
         data.status = req.body.status;
         data.ip = req.body.ip;
         data.instanceId = req.body.instanceId;

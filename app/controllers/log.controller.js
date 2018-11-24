@@ -17,7 +17,7 @@ exports.post = async function(req,res) {
 
 exports.updateLog = async function(req,res){
     Log.findOne({_id: req.body._id})
-    .then(data => {
+    .then(async data => {
         data.instanceId = req.body.instanceId;
         data.finished = req.body.finished;
         console.log(data);
