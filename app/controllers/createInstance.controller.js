@@ -48,7 +48,7 @@ exports.child_process = async (req,res) => {
   req.body.status = "created"
   req.body.ip = shell.cat('/root/ip.txt');
   req.body.instanceId = shell.cat('/root/instanceId.txt');
-  req.body.finished = Date.now;
+  req.body.finished = Date.now();
 
   await instance.updateInstance(req,res);
   await log.updateLog(req,res);
@@ -81,7 +81,7 @@ exports.terminate = async (req,res) => {
 }
 
 exports.test = async (req,res) => {
-  console.log(moment().format(SLASH_DMYHMS));
+  console.log(Date.now())
 }
 
 
