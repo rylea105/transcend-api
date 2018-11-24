@@ -11,8 +11,8 @@ subnetId=$8
 software=$9
 count=${10}
 
-export AWS_ACCESS_KEY_ID=$access
-export AWS_SECRET_ACCESS_KEY=$secret
+export AWS_ACCESS_KEY_ID="$access"
+export AWS_SECRET_ACCESS_KEY="$secret"
 
 ansible-playbook /root/transcend-api/ansible/create_key-pair.yml
 
