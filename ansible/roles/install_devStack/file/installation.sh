@@ -1,7 +1,9 @@
 #!bin/bash
 mysql_secure_installation <<EOF
 
-n
+y
+root
+root
 y
 y
 y
