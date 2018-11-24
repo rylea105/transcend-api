@@ -30,7 +30,7 @@ exports.child_process = async (req,res) => {
   var subnetId = req.body.subnetId;
   var access = req.body.access;
   var secret = req.body.secret;
-  var software = req.body.oneSoftware;
+  var software = req.body.Software;
   var count = req.body.count;
 
   console.log(software);
