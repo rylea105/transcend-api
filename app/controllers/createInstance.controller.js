@@ -7,13 +7,19 @@ const moment = require('moment');
 const SLASH_DMYHMS = 'DD/MM/YYYY HH:mm:ss';
 
 exports.command = async (req, res) => {
-    req.body.ip = "-"
-    req.body.instanceId= "-"
-    req.body.status = "pending"
-    
-    await this.preCreate(req,res);
-    await this.child_process(req,res);
+
+    this.installManyCount(req,res);
+    res.send("Done")
 };
+
+exports.installManyCount = async (req,res) => {
+  req.body.ip = "-"
+  req.body.instanceId= "-"
+  req.body.status = "pending"
+  
+  await this.preCreate(req,res);
+  await this.child_process(req,res);
+}
 
 exports.preCreate = async (req,res) => {
   var data = await instance.post(req,res);
@@ -64,7 +70,7 @@ exports.child_process = async (req,res) => {
 
   await instance.updateInstance(req,res);
   await log.updateLog(req,res);
-  res.send("Done")
+
   });
 }
 
