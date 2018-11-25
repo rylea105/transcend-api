@@ -20,7 +20,8 @@ exports.installManyCount = async (req,res) => {
   req.body.status = "pending"
   
   await this.preCreate(req,res);
-  await this.child_process(req,res);
+  return await this.child_process(req,res);
+  
 }
 
 exports.preCreate = async (req,res) => {
