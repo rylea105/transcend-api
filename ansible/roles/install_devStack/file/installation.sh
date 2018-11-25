@@ -2,8 +2,8 @@
 mysql_secure_installation <<EOF
 
 y
-admin
-transcend
+root
+root
 y
 y
 y

@@ -11,3 +11,9 @@ exports.findAll = (req, res) => {
           });
       });
 };
+
+exports.post = async (req,res) => {
+    const addObj = new Resource(req.body);
+    await addObj.save();
+    return addObj;
+}

@@ -1,0 +1,8 @@
+- name: Install nginx
+  import_tasks: install_nginx.yml
+
+- name: Install nodejs
+  import_tasks: install_nodejs.yml
+
+- name: Install mariadb
+  import_tasks: install_mariadb.yml

@@ -1,0 +1,11 @@
+---
+- hosts: local
+  user: root
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: terminate ec2 isntance
+    ec2:
+      instance_ids: '{{ instanceId }}'
+      region: ap-southeast-1
+      state: 'absent'

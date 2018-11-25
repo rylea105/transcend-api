@@ -1,6 +1,3 @@
-- name: Instance nginx
-  import_tasks: nginx.yml
-
 - name: Curl Node 8.X and install nodejs
   shell: sudo curl -sL https://rpm.nodesource.com/setup_8.x | sudo bash -
 

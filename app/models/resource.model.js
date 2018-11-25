@@ -8,7 +8,8 @@ const ResourceSchema = mongoose.Schema({
     dateCreate: Date,
     security_group: String,
     key_pair_name: String,
-    vpc_subnet: String
+    vpc_subnet: String,
+    userId: String
 }, {
     timestamps: true,
     collection: 'Resource'

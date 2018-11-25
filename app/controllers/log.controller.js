@@ -9,10 +9,28 @@ exports.findAll = function(req, res){
     });
 };
 
-exports.post = function(req,res) {
+exports.post = async function(req,res) {
     const addObj = new Log(req.body);
-    addObj.save(err =>{
-        if (err) res.status(500).send(err);
-    });
-    return console.log(addObj);
+    await addObj.save();
+    return addObj;
 };
+
+exports.updateLog = async function(req,res){
+    Log.findOne({_id: req.body._id})
+    .then(async data => {
+        data.instanceId = req.body.instanceId;
+        data.finished = req.body.finished;
+        console.log(data);
+        await data.save();
+        return data;
+        
+    })
+}
+
+exports.deleteLog = async function(req,res){
+    await Log.deleteOne({instanceId: req.body.isntanceId})
+    .then(data => {
+        console.log("delete: "+data)
+    })
+}
+

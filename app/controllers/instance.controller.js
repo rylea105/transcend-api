@@ -1,5 +1,4 @@
 const Instance = require('../models/instance.model.js');
-var mongoose = require( 'mongoose' ); 
 
 exports.findAll = (req, res) => {
     Instance.find()
@@ -15,38 +14,43 @@ exports.findOneItem = (req,res) => {
     .then(data => {
         console.log(data);
         res.send(data)
-    })
+    });
 }
 
 exports.postInstance = function(req, res) {
     const addObj = new Instance(req.body);
     addObj.save().then(data => {
         console.log(addObj)
-        res.send(addObj)
-    }) 
+        
+    })
+    io.emit('instance', addObj);
+    res.send(addObj)
 };
 
 exports.post = async (req,res) => {
     const addObj = new Instance(req.body);
+    addObj.software = req.body.oneSoftware;
     await addObj.save()
     return addObj;
 }
 
-exports.edit = (req, res) =>{
-    res.send(this.findandupdate(req,res));
-};
-
-exports.updateInstance = function(req,res){
+exports.updateInstance = async function(req,res){
     Instance.findOne({_id: req.body._id})
-    .then(data => {
+    .then(async data => {
         data.status = req.body.status;
         data.ip = req.body.ip;
+        data.instanceId = req.body.instanceId;
         console.log(data);
-        data.save(err => {
-            res.status(200).send(data);
-        });
+        await data.save();
+        return data;
         
     })
 }
 
+exports.deleteInstance = async function(req,res){
+    await Instance.deleteOne({instanceId: req.body.isntanceId})
+    .then(data => {
+        console.log("delete: "+data)
+    })
+}
 
