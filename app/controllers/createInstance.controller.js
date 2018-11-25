@@ -7,8 +7,10 @@ const moment = require('moment');
 const SLASH_DMYHMS = 'DD/MM/YYYY HH:mm:ss';
 
 exports.command = async (req, res) => {
-
-    this.installManyCount(req,res);
+    var count = req.body.count;
+    for(number = 0 ; number < count ; number++){
+      this.installManyCount(req,res);
+    }
     res.send("Done")
 };
 
