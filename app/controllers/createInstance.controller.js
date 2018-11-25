@@ -3,21 +3,14 @@ const log = require("./log.controller.js");
 const check = require("./limit.controller.js")
 var shell = require('shelljs');
 const Limit = require('../models/limit.model.js');
-const moment = require('moment');
-const SLASH_DMYHMS = 'DD/MM/YYYY HH:mm:ss';
 
 exports.command = async (req, res) => {
-
-  var count = req.body.count;
-  for(i = 0;i < count; i++){
     req.body.ip = "-"
     req.body.instanceId= "-"
     req.body.status = "pending"
     
     await this.preCreate(req,res);
     await this.child_process(req,res);
-  }
-  res.send("Done");
 };
 
 exports.preCreate = async (req,res) => {
@@ -98,9 +91,7 @@ exports.terminate = async (req,res) => {
 }
 
 exports.test = async (req,res) => {
-  const software = require("./software.controller.js")
-  var data = await software.findAll(req,res);
-  console.log(data);
+
 }
 
 
