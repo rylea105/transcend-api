@@ -4,7 +4,6 @@
   connection: local
   gather_facts: no
   vars_files:
-    - /root/transcend-api/ansible/vars/software.yml
     - /root/transcend-api/ansible/vars/instance.yml
   tasks:
   - name: create a new ec2 key pair
