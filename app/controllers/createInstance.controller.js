@@ -9,7 +9,7 @@ const SLASH_DMYHMS = 'DD/MM/YYYY HH:mm:ss';
 exports.command = async (req, res) => {
     var count = req.body.count;
     for(number = 0 ; number < count ; number++){
-      this.installManyCount(req,res);
+       await this.installManyCount(req,res);
     }
     res.send("Done")
 };
