@@ -5,6 +5,6 @@ region: "ap-southeast-1"
 keypair: "project"
 instance_type: "t2.micro"
 image: "ami-8e0205f2"
-group: "transcend"
+group: "transcned"
 subnet_id: "subnet-a89cd5cf"
 count: 1

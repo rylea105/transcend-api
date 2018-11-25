@@ -33,7 +33,17 @@ exports.child_process = async (req,res) => {
   var software = req.body.software;
   var count = req.body.count;
 
+  console.log(access);
+  console.log(secret);
+  console.log(region);
+  console.log(keypair);
+  console.log(instanceType);
+  console.log(image);
+  console.log(group);
+  console.log(subnetId);
   console.log(software);
+  console.log(count);
+
 
   var spawn = require('child_process').spawn,
   process = await spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software,count]);
