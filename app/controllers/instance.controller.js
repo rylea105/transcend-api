@@ -29,7 +29,6 @@ exports.postInstance = function(req, res) {
 
 exports.post = async (req,res) => {
     const addObj = new Instance(req.body);
-    addObj.software = req.body.oneSoftware;
     await addObj.save()
     return addObj;
 }
