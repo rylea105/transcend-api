@@ -61,7 +61,10 @@
   become: yes
   
 - name: Start and enable zabbix
-  shell: sudo systemctl start zabbix-server zabbix-agent httpd | sudo systemctl enable zabbix-server zabbix-agent httpd
+  shell: sudo systemctl start zabbix-server zabbix-agent httpd
+
+- name: Start and enable zabbix
+  shell: sudo systemctl enable zabbix-server zabbix-agent httpd
 
 - name: SELinux configuration
   shell: sudo setsebool -P httpd_can_network_connect on

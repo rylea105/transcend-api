@@ -90,8 +90,11 @@ exports.terminate = async (req,res) => {
     });
 }
 
-exports.test = async (req,res) => {
+var moment = require('moment');
 
+exports.test = async (req,res) => {
+    var date = moment(Date.now()).format("M D YYYY, h:mm:ss a");
+    console.log(date);
 }
 
 
