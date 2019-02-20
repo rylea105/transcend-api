@@ -105,6 +105,16 @@ exports.terminateId = async function(req,res) {
   res.send(addObj);
 };
 
+exports.findAllTerminate = (req, res) => {
+  Terminate.find()
+  .then(Terminate => {
+      res.status(200).send(Terminate)
+  }).catch(err => {
+      return "Some error occurred while retrieving Terminate."
+  });
+};
+
+
 
 
 
