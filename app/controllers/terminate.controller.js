@@ -21,7 +21,7 @@ exports.terminateId = async function(req,res) {
     var secret = req.body.secret;
     
     var spawn = require('child_process').spawn,
-    process = await spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',instanceId,access,secret]);
+    process = await spawn('sh',  ['/root/transcend-api/ansible/run_terminate.sh',instanceId,access,secret]);
 
     await process.stdout.on('data',function (data) {
       console.log(data.toString());
