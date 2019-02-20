@@ -3,6 +3,8 @@
   user: root
   connection: local
   gather_facts: false
+  vars_files:
+    - /root/transcend-api/ansible/vars/terminate.yml
   tasks:
   - name: terminate ec2 isntance
     ec2:

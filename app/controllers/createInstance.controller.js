@@ -84,9 +84,9 @@ exports.terminate = async (req,res) => {
     });
     
     await process.on('exit', async function (code) {
-      await check.increaseCurrent(req,res)
-      await log.deleteLog(req,res);
-      await instance.deleteInstance(req,res);
+      // await check.increaseCurrent(req,res)
+      // await log.deleteLog(req,res);
+      // await instance.deleteInstance(req,res);
     });
 }
 
