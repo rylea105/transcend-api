@@ -1,4 +1,6 @@
 const Terminate = require('../models/terminate.model.js');
+const instance = require("./instance.controller.js");
+const log = require("./log.controller.js");
 
 exports.terminateId = async function(req,res) {
     const addObj = new Terminate(req.body);
@@ -29,7 +31,8 @@ exports.terminateId = async function(req,res) {
     
     await process.on('exit', async function (code) {
       // await check.increaseCurrent(req,res)
-      // await log.deleteLog(req,res);
-      // await instance.deleteInstance(req,res);
+      req.body.status = "Create"
+      await log.post(req,res);
+      await instance.deleteInstance(req,res);
     });
 }

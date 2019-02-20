@@ -47,7 +47,7 @@ exports.updateInstance = async function(req,res){
 }
 
 exports.deleteInstance = async function(req,res){
-    await Instance.deleteOne({instanceId: req.body.isntanceId})
+    await Instance.deleteOne({instanceId: req.body.instanceId})
     .then(data => {
         console.log("delete: "+data)
     })

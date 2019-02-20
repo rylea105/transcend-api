@@ -8,7 +8,8 @@ const LogSchema = mongoose.Schema({
     instanceId: String,
     finished: {type: Date, default: Date.now},
     started: {type: Date, default: Date.now},
-    userId: String
+    userId: String,
+    status: String
 }, {
     timestamps: false,
     collection: 'Logs'

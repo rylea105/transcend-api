@@ -16,6 +16,7 @@ exports.command = async (req, res) => {
 exports.preCreate = async (req,res) => {
   var data = await instance.post(req,res);
   req.body._id = data._id;
+  req.body.status = "Create"
   await log.post(req,res);
 }
 
