@@ -6,7 +6,7 @@
   vars_files:
     - /root/transcend-api/ansible/vars/terminate.yml
   tasks:
-  - name: terminate ec2 isntance
+  - name: terminate ec2 instance
     ec2:
       instance_ids: '{{ instanceId }}'
       region: ap-southeast-1

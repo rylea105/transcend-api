@@ -3,4 +3,5 @@ module.exports = (app) => {
 
     app.get('/getinstance', instance.findAll);
     app.post('/postinstance', instance.postInstance);
+    app.post('/d', instance.deleteInstance);
 }

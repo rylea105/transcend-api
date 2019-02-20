@@ -31,7 +31,7 @@ exports.terminateId = async function(req,res) {
     
     await process.on('exit', async function (code) {
       // await check.increaseCurrent(req,res)
-      req.body.status = "Create"
+      req.body.status = "Terminate"
       await log.post(req,res);
       await instance.deleteInstance(req,res);
     });
