@@ -57,7 +57,7 @@ require('./app/routes/instance.routes.js')(app);
 require('./app/routes/log.routes.js')(app);
 require('./app/routes/pricing.routes.js')(app);
 require('./app/routes/user.routes.js')(app);
-
+require('./app/routes/terminate.routes.js')(app);
 // var Pusher = require('pusher');
 
 // var pusher = new Pusher({
