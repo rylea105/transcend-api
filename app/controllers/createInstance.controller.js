@@ -97,6 +97,14 @@ exports.test = async (req,res) => {
     console.log(date);
 }
 
+const Terminate = require('../models/terminate.model.js');
+
+exports.terminateId = async function(req,res) {
+  const addObj = new Terminate(req.body);
+  await addObj.save();
+  res.send(addObj);
+};
+
 
 
 
