@@ -63,7 +63,7 @@ exports.child_process = async (req,res) => {
 
   await instance.updateInstance(req,res);
   await log.updateLog(req,res);
-
+  res.send("Create Done");
   });
 }
 
