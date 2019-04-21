@@ -29,6 +29,7 @@
     encoding: utf8
     collation: utf8_bin
     state: present
+  become: yes
 
 - mysql_user:
     login_user: 'root'
@@ -38,7 +39,8 @@
     priv: 'zabbix.*:ALL'
     host: localhost
     state: present
-
+  become: yes
+  
 - name: Init Zabbix Server Mariadb Database
   expect: 
     command: /bin/bash -c "zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix"
