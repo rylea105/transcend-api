@@ -21,23 +21,23 @@
 - name: Install pexpect
   shell: sudo pip install pexpect
 
+- name: Create a new database with name 'zabbix'
+  mysql_db:
+    login_user: 'root'
+    login_password: 'transcend'
+    name: zabbix
+    encoding: utf8
+    collation: utf8_bin
+    state: present
+  become: yes
+
 - mysql_user:
-    login_user: 'transcend'
+    login_user: 'root'
     login_password: 'transcend'
     name: 'zabbix'
     password: 'transcend'
     priv: 'zabbix.*:ALL'
     host: localhost
-    state: present
-  become: yes
-
-- name: Create a new database with name 'zabbix'
-  mysql_db:
-    login_user: 'transcend'
-    login_password: 'transcend'
-    name: zabbix
-    encoding: utf8
-    collation: utf8_bin
     state: present
   become: yes
 
