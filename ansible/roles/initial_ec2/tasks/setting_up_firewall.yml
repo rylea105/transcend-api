@@ -23,6 +23,10 @@
         from_port: 10051
         to_port: 10051
         cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        from_port: 27017
+        to_port: 27017
+        cidr_ip: 0.0.0.0/0
 
 
     rules_egress:
