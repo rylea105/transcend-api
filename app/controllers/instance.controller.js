@@ -29,7 +29,6 @@ exports.postInstance = function(req, res) {
 
 exports.post = async (req,res) => {
     const addObj = new Instance(req.body);
-    addObj.software = req.body.oneSoftware;
     await addObj.save()
     return addObj;
 }
@@ -48,9 +47,9 @@ exports.updateInstance = async function(req,res){
 }
 
 exports.deleteInstance = async function(req,res){
-    await Instance.deleteOne({instanceId: req.body.isntanceId})
-    .then(data => {
-        console.log("delete: "+data)
-    })
+    await Instance.deleteOne({ instanceId: req.body.instanceId}, function (err) {
+        if (err) return handleError(err);
+        res.send("done");
+      });
 }
 

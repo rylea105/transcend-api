@@ -3,8 +3,6 @@ const log = require("./log.controller.js");
 const check = require("./limit.controller.js")
 var shell = require('shelljs');
 const Limit = require('../models/limit.model.js');
-const moment = require('moment');
-const SLASH_DMYHMS = 'DD/MM/YYYY HH:mm:ss';
 
 exports.command = async (req, res) => {
     req.body.ip = "-"
@@ -18,6 +16,7 @@ exports.command = async (req, res) => {
 exports.preCreate = async (req,res) => {
   var data = await instance.post(req,res);
   req.body._id = data._id;
+  req.body.status = "Create"
   await log.post(req,res);
 }
 
@@ -32,18 +31,6 @@ exports.child_process = async (req,res) => {
   var secret = req.body.secret;
   var software = req.body.software;
   var count = req.body.count;
-
-  console.log(access);
-  console.log(secret);
-  console.log(region);
-  console.log(keypair);
-  console.log(instanceType);
-  console.log(image);
-  console.log(group);
-  console.log(subnetId);
-  console.log(software);
-  console.log(count);
-
 
   var spawn = require('child_process').spawn,
   process = spawn('sh',  ['/root/transcend-api/ansible/run_script.sh',access,secret,region,keypair,instanceType,image,group,subnetId,software,count]);
@@ -64,7 +51,7 @@ exports.child_process = async (req,res) => {
 
   await instance.updateInstance(req,res);
   await log.updateLog(req,res);
-  res.send("Done")
+  res.send("Create Done");
   });
 }
 
@@ -73,28 +60,16 @@ exports.postCreate = async (req,res) => {
 }
 
 
-exports.terminate = async (req,res) => {
-    var instanceId = req.body.instanceId;
-    var access = req.body.access;
-    var secret = req.body.secret;
-    
-    var spawn = require('child_process').spawn,
-    process = await spawn('sh',  ['/root/transcend-api/ansible/terminate',instanceId,access,secret]);
 
-    await process.stdout.on('data',function (data) {
-      console.log(data.toString());
-    });
-    
-    await process.on('exit', async function (code) {
-      await check.increaseCurrent(req,res)
-      await log.deleteLog(req,res);
-      await instance.deleteInstance(req,res);
-    });
-}
+
+var moment = require('moment');
 
 exports.test = async (req,res) => {
-  console.log(Date.now())
+    var date = moment(Date.now()).format("M D YYYY, h:mm:ss a");
+    console.log(date);
 }
+
+
 
 
 
